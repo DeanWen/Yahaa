@@ -16,10 +16,11 @@ public class Model {
 		twitterSecret  = config.getInitParameter("TwitterSecret");
 		flickrKey =  config.getInitParameter("FlickerKey");
 		
-		twitter = new Twitter(twitterKey, twitterSecret);
+		twitter = new Twitter();
 		flickr = new Flickr(flickrKey);
 	}
 
 	public Twitter getTwitter () { return twitter; }
 	public Flickr getFlickr () { return flickr; }
+
 }

@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Model;
 
@@ -18,6 +17,8 @@ public class Controller extends HttpServlet {
 		Model model = new Model(getServletConfig());
 
 		Action.add(new IndexAction(model));
+		Action.add(new Login(model));
+		Action.add(new TwitterCallback(model));
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -40,20 +41,8 @@ public class Controller extends HttpServlet {
 	 * @return the next page (the view)
 	 */
 	private String performTheAction(HttpServletRequest request) {
-		HttpSession session = request.getSession(true);
 		String servletPath = request.getServletPath();
 		String action = getActionName(servletPath);
-
-		if (session.getAttribute("user") == null) {
-			// If the user hasn't logged in, so login is the only option
-			return Action.perform("index.do", request);
-		}
-
-		if (action.equals("welcome")) {
-			// User is logged in, but at the root of our web app
-			return Action.perform("home.do", request);
-		}
-
 		// Let the logged in user run his chosen action
 		return Action.perform(action, request);
 	}
@@ -69,7 +58,12 @@ public class Controller extends HttpServlet {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND, request.getServletPath());
 			return;
 		}
-
+		
+		if (nextPage.contains("://")) {
+			response.sendRedirect(nextPage);
+			return;
+		}
+		
 		if (nextPage.endsWith(".do")) {
 			response.sendRedirect(nextPage);
 			return;

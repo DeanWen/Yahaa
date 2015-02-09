@@ -26,7 +26,7 @@ public class IndexAction extends Action {
 
 	public String perform(HttpServletRequest request) {
 		try {
-			twitter.fetchTweetsExample();
+			//twitter.fetchTweetsExample();
 			flickr.fetchPlacesExample();
 		} catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
