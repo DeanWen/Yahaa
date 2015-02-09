@@ -1,14 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="template-top.jsp" />
 <!--==============================Content=================================-->
 			<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - December 30, 2013!</div>
 				<div class="container_12">
 					<div class="grid_6">
+					<c:forEach var="photo" items="${photos}">
 						<div class="p1_box left cl1">
 							<div class="type"></div>
-							<img src="images/page1_img1.jpg" alt="">
-							<a href="index-2.html" class="bot">Boudoir Beauty <span>7 <br>images</span></a>
+							<img src="${photo}" alt="">
+							<a href="#" class="bot">Boudoir Beauty <span>7 <br>images</span></a>
 						</div>
-						<div class="p1_box left cl2">
+					</c:forEach> 
+					</div>
+						<!-- <div class="p1_box left cl2">
 							<div class="type"></div>
 							<div class="gray_block">
 								Go ahead and read more about this <span class="col1"><a href="http://blog.templatemonster.com/free-website-templates/" rel="nofollow">free theme</a></span> created by TemplateMonster.com.<br>
@@ -52,7 +56,7 @@
 							<img src="images/page1_img7.jpg" alt="">
 							<a href="#" class="bot">My new project<span><strong class=" fa-angle-right fa"></strong></span></a>
 						</div>
-					</div>
+					</div> -->
 					<div class="clear"></div>
 					<div class="grid_12">
 						<a href="#" class="round"> Older Posts</a>

@@ -1,9 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLStreamException;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
@@ -27,8 +29,12 @@ public class IndexAction extends Action {
 	public String perform(HttpServletRequest request) {
 		try {
 			//twitter.fetchTweetsExample();
-			flickr.fetchPlacesExample();
-		} catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException e) {
+			
+			ArrayList<String> photos = new ArrayList<String>();
+			photos = flickr.fetchPhotoExample();
+			request.setAttribute("photos", photos);
+			
+		} catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException | XMLStreamException e) {
 			e.printStackTrace();
 		}
 		return "index.jsp";

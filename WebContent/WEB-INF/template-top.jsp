@@ -41,7 +41,7 @@
 				<div class="container_12">
 					<div class="grid_12">
 						<h1>
-							<a href="index.html">
+							<a href="index.jsp">
 								<img src="images/logo.png" alt="Your Happy Family">
 							</a>
 						</h1>
@@ -54,11 +54,11 @@
 				<div class="grid_12">
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
-							<li class="current"><a href="index.html">Home</a></li>
-							<li><a href="index-1.html">About</a></li>
-							<li><a href="index-2.html">Gallery</a></li>
-							<li><a href="index-3.html">Video</a></li>
-							<li><a href="index-4.html">Contacts</a></li>
+							<li class="current"><a href="index.jsp">Home</a></li>
+							<li><a href="index-1.jsp">About</a></li>
+							<li><a href="index-2.jsp">Gallery</a></li>
+							<li><a href="index-3.jsp">Video</a></li>
+							<li><a href="index-4.jsp">Contacts</a></li>
 						</ul>
 					</nav>
 					<div class="clear"></div>
