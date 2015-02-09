@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+
+    <display-name>Yahaa</display-name>
+    <description> Yahaa - Infinity </description>
+
+    <servlet>
+        <servlet-name>  controller-servlet       </servlet-name>
+        <servlet-class>
+            controller.Controller
+        </servlet-class>
+        
+        <init-param>
+          <param-name>    TwitterKey         </param-name> 
+          <param-value>   SKdVaPTEnk8t3ccmpowHpkmxA   </param-value>
+        </init-param>
+        
+         <init-param>
+          <param-name>    TwitterSecret         </param-name> 
+          <param-value>   XupqEu9OAlrsYryrszXdX0GN8uTHHdj01HPF2lKqW38eOK2Hz0   </param-value>
+        </init-param>
+        
+        <init-param>
+          <param-name>    TwitterAccessToken         </param-name> 
+          <param-value>   390650133-hmeBn8KKbqveSiByKstSJB3grUp0jE2U1VrU59eg   </param-value>
+        </init-param>
+        
+         <init-param>
+          <param-name>    TwitterAccessSecret         </param-name> 
+          <param-value>   fOVJvwJBtDWHiYdHPqMn8lZROUV7PTBLHMXoWs1pFMfHP   </param-value>
+        </init-param>
+        
+        <init-param>
+          <param-name>    FlickerKey                 </param-name> 
+          <param-value>   dd6594393674176f44ec5daeefdf86ac    </param-value>
+        </init-param>
+        
+        <init-param>
+          <param-name>    FlickerSecret                 </param-name> 
+          <param-value>   2f25c2e619c6ec00    </param-value>
+        </init-param>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>  controller-servlet        </servlet-name>
+        <url-pattern>   *.do                     </url-pattern>
+    </servlet-mapping>
+    
+  <servlet-mapping>
+    <servlet-name>controller-servlet</servlet-name>
+    <url-pattern>   /index.do                  </url-pattern>
+  </servlet-mapping>
+  
+    <welcome-file-list>
+        <welcome-file>index.do</welcome-file>
+    </welcome-file-list>
+  
+</web-app>
