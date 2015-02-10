@@ -27,7 +27,7 @@ public class Twitter {
     	service = new ServiceBuilder().provider(TwitterApi.SSL.class)
 				.apiKey(twitterKey)
 				.apiSecret(twitterSecret)
-				.callback("http://localhost:8080/Task8Test/twitterCallback.do")
+				.callback("http://localhost:8080/Task8-Yahaa/twitterCallback.do")
 				.build();
     }  
 	

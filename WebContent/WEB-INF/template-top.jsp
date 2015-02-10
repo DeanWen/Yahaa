@@ -42,7 +42,7 @@
 					<div class="grid_12">
 						<h1>
 							<a href="index.jsp">
-								<img src="images/logo.png" alt="Your Happy Family">
+								<img src="images/logo.gif" alt="Your Happy Family">
 							</a>
 						</h1>
 					</div>

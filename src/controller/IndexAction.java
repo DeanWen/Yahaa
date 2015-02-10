@@ -30,7 +30,7 @@ public class IndexAction extends Action {
 		try {
 			//twitter.fetchTweetsExample();
 			
-			ArrayList<String> photos = new ArrayList<String>();
+			HashMap<String, String> photos = new HashMap<String, String>();
 			photos = flickr.fetchPhotoExample();
 			request.setAttribute("photos", photos);
 			

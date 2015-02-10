@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.xml.parsers.DocumentBuilder;
@@ -99,8 +100,8 @@ public class Flickr {
      * @param count:      maximum amount of photos
      * @return:	list of urls of photos
      */
-	public ArrayList<String> fetchPhotos(String keyword, int count) throws  IOException, XMLStreamException, XPathExpressionException, ParserConfigurationException, SAXException {
-		ArrayList<String> result = new ArrayList<String>();
+	public HashMap<String, String> fetchPhotos(String keyword, int count) throws  IOException, XMLStreamException, XPathExpressionException, ParserConfigurationException, SAXException {
+		HashMap<String, String> result = new HashMap<String, String>();
 		
 		HttpsURLConnection connection = null;
 		
@@ -140,22 +141,24 @@ public class Flickr {
 		
         NodeList nodeList = (NodeList) xpath.evaluate("//photos/photo",  doc, XPathConstants.NODESET);
         
-        String flickrurl = null;
+
         for (int i = 0; i < nodeList.getLength(); i++) {
         	Node node = nodeList.item(i);
         	
         	String id = (String) xpath.evaluate("@id", node, XPathConstants.STRING);
         	String server = (String) xpath.evaluate("@server", node, XPathConstants.STRING);
         	String secret = (String) xpath.evaluate("@secret", node, XPathConstants.STRING);
-			flickrurl = "http://static.flickr.com/" + server + "/" + id + "_" + secret + ".jpg";
-			result.add(flickrurl);
+			String flickrurl = "http://static.flickr.com/" + server + "/" + id + "_" + secret + ".jpg";
+			String title = (String) xpath.evaluate("@title", node, XPathConstants.STRING);
+			
+			result.put(flickrurl, title);
       		
         }
         
 		return result;
 	}
 	
-	public ArrayList<String> fetchPhotoExample () throws XPathExpressionException, IOException, XMLStreamException, ParserConfigurationException, SAXException {
+	public HashMap<String, String> fetchPhotoExample () throws XPathExpressionException, IOException, XMLStreamException, ParserConfigurationException, SAXException {
 		return fetchPhotos("Pittsburgh", 10);
 	}
 	
