@@ -54,11 +54,11 @@
 				<div class="grid_12">
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
+							<li><a href="#">About</a></li>
+							<li><a href="#">Gallery</a></li>
 							<li class="current"><a href="index.jsp">Home</a></li>
-							<li><a href="index-1.jsp">About</a></li>
-							<li><a href="index-2.jsp">Gallery</a></li>
-							<li><a href="index-3.jsp">Video</a></li>
-							<li><a href="index-4.jsp">Contacts</a></li>
+							<li><a href="#">Video</a></li>
+							<li><a href="#">Contacts</a></li>
 						</ul>
 					</nav>
 					<div class="clear"></div>
