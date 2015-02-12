@@ -1,23 +1,22 @@
 package controller;
 
 import java.io.IOException;
-import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.xpath.XPathExpressionException;
 
 import org.xml.sax.SAXException;
 
 import model.Flickr;
+import model.FlickrPublic;
 import model.Model;
 import model.Twitter;
 
 public class IndexAction extends Action {
 
 	private Twitter twitter;
-	private Flickr flickr;
+	private FlickrPublic flickr;
 	
 	public IndexAction(Model model) {
 		twitter = model.getTwitter();
@@ -29,12 +28,8 @@ public class IndexAction extends Action {
 	public String perform(HttpServletRequest request) {
 		try {
 			//twitter.fetchTweetsExample();
-			
-			HashMap<String, String> photos = new HashMap<String, String>();
-			photos = flickr.fetchPhotoExample();
-			request.setAttribute("photos", photos);
-			
-		} catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException | XMLStreamException e) {
+			flickr.fetchPlacesExample();
+		} catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException e) {
 			e.printStackTrace();
 		}
 		return "index.jsp";

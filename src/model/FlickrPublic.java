@@ -24,9 +24,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class Flickr {
+public class FlickrPublic {
 	private final String flickrKey;
-    public Flickr (String key){ flickrKey = key; }  
+    public FlickrPublic (String key){ flickrKey = key; }  
     
     public static final String PLACE = "flickr.places.find";
 

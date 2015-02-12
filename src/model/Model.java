@@ -7,20 +7,22 @@ public class Model {
 	private final String twitterKey;
 	private final String twitterSecret;
 	private final String flickrKey;
+	private final String flickrSecret;
 	
 	private final Twitter twitter;
-	private final Flickr flickr;
+	private final FlickrPublic flickrPublic;
 	
 	public Model(ServletConfig config) throws ServletException {
 		twitterKey = config.getInitParameter("TwitterKey");
-		twitterSecret  = config.getInitParameter("TwitterSecret");
-		flickrKey =  config.getInitParameter("FlickerKey");
+		twitterSecret = config.getInitParameter("TwitterSecret");
+		flickrKey = config.getInitParameter("FlickrKey");
+		flickrSecret = config.getInitParameter("FlickrSecret");
 		
 		twitter = new Twitter();
-		flickr = new Flickr(flickrKey);
+		flickrPublic = new FlickrPublic(flickrKey);
 	}
 
 	public Twitter getTwitter () { return twitter; }
-	public Flickr getFlickr () { return flickr; }
+	public FlickrPublic getFlickr () { return flickrPublic; }
 
 }

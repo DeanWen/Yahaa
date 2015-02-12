@@ -27,7 +27,7 @@ public class Twitter {
     	service = new ServiceBuilder().provider(TwitterApi.SSL.class)
 				.apiKey(twitterKey)
 				.apiSecret(twitterSecret)
-				.callback("http://localhost:8080/Task8-Yahaa/twitterCallback.do")
+				.callback("http://localhost:8080/Task8Test/twitterCallback.do")
 				.build();
     }  
 	
@@ -58,10 +58,32 @@ public class Twitter {
 		service.signRequest(accessToken, request);
 		Response response = request.send();
 
-		System.out.println(response.getBody());
+		//System.out.println(response.getBody());
 		Gson gson = new Gson();
 		UserBean userBean = gson.fromJson(response.getBody(), UserBean.class);
 		return userBean.getScreen_name();
+	}
+	
+	public String getTimeLine(Token accessToken) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+		
+		return response.getBody();
+	}
+	
+	public void like(Token accessToken, long tweetId) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/favorites/create.json?id=" + tweetId);
+
+		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+
+		System.out.println(response.getBody());
 	}
 	
 	public void sendTwitter(Token accessToken, String text)
@@ -70,10 +92,13 @@ public class Twitter {
 		query.append("https://api.twitter.com/1.1/statuses/update.json?status=");
 		query.append(text);
 
-		// System.out.println(query.toString());
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		service.signRequest(accessToken, request);
-		request.send();
+		//System.out.println(request);
+		
+		Response response = request.send();
+		
+		System.out.println("This is the response: " + response.getBody());
 	}
 	
 }

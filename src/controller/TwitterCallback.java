@@ -47,8 +47,9 @@ public class TwitterCallback extends Action {
 			Verifier verifier = new Verifier(form.getOauth_verifier());
 			Token accessToken = twitter.getAccessToken(requestToken, verifier);
 
-			twitter.sendTwitter(accessToken, TwitterEncoder.encode("This is Tian Zheng testing twitter login using Yahaa"));
-
+			//twitter.sendTwitter(accessToken, TwitterEncoder.encode("This is Tian Zheng testing twitter login using Yahaa"));
+			//System.out.println(twitter.getTimeLine(accessToken));
+			
 			session.setAttribute("accessToken", accessToken);
 
 			
