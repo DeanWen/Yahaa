@@ -1,6 +1,5 @@
 package model;
 
-<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,22 +13,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
-=======
+
 import java.util.ArrayList;
 
->>>>>>> FETCH_HEAD
+import java.util.ArrayList;
+
+
 import javax.servlet.http.HttpServlet;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.Api;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -37,16 +31,8 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 public class Flickr extends HttpServlet{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private static final String API_KEY = "dd6594393674176f44ec5daeefdf86ac";
 	private static final String API_SECRET = "2f25c2e619c6ec00";
 	
@@ -80,8 +66,7 @@ public class Flickr extends HttpServlet{
 		Token accessToken = service.getAccessToken(requestToken, verifier);
 		return accessToken;
 	}
-	
-<<<<<<< HEAD
+
 	public HashMap<String, String> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		HashMap<String, String> result = new HashMap<String, String>();
 		
@@ -143,6 +128,5 @@ public class Flickr extends HttpServlet{
 	public HashMap<String, String> fetchContactPhotos(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
 		return fetchContactPhotosMethod(10, accessToken);
 	}
-=======
->>>>>>> FETCH_HEAD
+
 }
