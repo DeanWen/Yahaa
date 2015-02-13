@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
+
 import org.scribe.model.Token;
 
 import databeans.FlickrBean;
@@ -20,7 +21,7 @@ public class LikeTweetAction extends Action {
 
 	private Twitter twitter;
 	private Token twitterToken;
-	private FormBeanFactory<LikeTweetForm> buyFormFactory = FormBeanFactory
+	private FormBeanFactory<LikeTweetForm> likeFormFactory = FormBeanFactory
 			.getInstance(LikeTweetForm.class);
 	private long tweetId;
 	
@@ -37,8 +38,8 @@ public class LikeTweetAction extends Action {
 		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 		LikeTweetForm form = null;
 		try {
-			form = buyFormFactory.create(request);
-			tweetId = form.getId();
+			form = likeFormFactory.create(request);
+			tweetId = form.getIdAsLong();
 			twitter.like(twitterToken, tweetId);
 		} catch (FormBeanException e) {
 			e.printStackTrace();
