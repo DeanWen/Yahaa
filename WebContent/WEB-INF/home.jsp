@@ -33,8 +33,8 @@
             <c:forEach var="photo" items="${photos}">
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
-                    <img src="${photo.getKey() }" alt="">
-                    <a href="index-3.html" class="bot">"${photo.getValue()}"<span><strong class="fa-angle-right fa"></strong></span></a>
+                    <img src="${photo.getUrl() }" alt="">
+                    <a href="index-3.html" class="bot">"${photo.getTitle()}"<span><strong class="fa-angle-right fa"></strong></span></a>
                 </div>
             </c:forEach>
         </div>
