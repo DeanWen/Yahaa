@@ -18,7 +18,10 @@ public class Controller extends HttpServlet {
 
 		Action.add(new IndexAction(model));
 		Action.add(new Login(model));
+		Action.add(new TwitterLogin(model));
+		Action.add(new FlickrLogin(model));
 		Action.add(new TwitterCallback(model));
+		Action.add(new FlickrCallback(model));
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
