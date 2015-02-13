@@ -23,6 +23,7 @@ public class Controller extends HttpServlet {
 		Action.add(new FlickrLogin(model));
 		Action.add(new TwitterCallback(model));
 		Action.add(new FlickrCallback(model));
+		Action.add(new FetchContactsPhotos(model));
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

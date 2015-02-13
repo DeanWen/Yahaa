@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.xpath.XPathExpressionException;
@@ -36,6 +37,8 @@ public class IndexAction extends Action {
 			user.setFlickrId("hello");
 			userDAO.create(user);
 			
+			HttpSession session = request.getSession();
+			session.setAttribute("User", user);
 			HashMap<String, String> photos = new HashMap<String, String>();
 			photos = flickr.fetchPhotoExample();
 			request.setAttribute("photos", photos);
