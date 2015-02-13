@@ -36,34 +36,34 @@ public class RegisterAction extends Action {
 		
 		try {
 			String twitterId = twitter.getTwitterId(twitterToken);
-			String screenName = twitter.getUsername(twitterToken);
+			String screenName = twitter.getUsername(twitterToken);	
+			if (twitterToken == null) {
+				return "twitterLogin.do";
+			}
+			if (flickrToken == null) {
+				return "flickrLogin.do";
+			}
 			
 			UserBean user = userDAO.readByTwitterId(twitterId);
-
 			if (user != null) {
-				if (!user.getFlickrId().isEmpty() && !user.getTwitterId().isEmpty()) {
-					session.setAttribute("user", user);
-					return "home.do";
-				}else {
-					if (user.getFlickrId().isEmpty()) {
-						return "flickrLogin.do";
-					}else {
-						return "twitterLogin.do";
-					}
-				}
+				session.setAttribute("user", user);
+				return "home.do";
 			}else {
 				user = new UserBean();
 				user.setTwitterId(twitterId);
 				user.setTwitterToken(twitterToken.getToken());
 				user.setTwitterSecret(twitterToken.getSecret());
 				user.setScreen_Name(screenName);
+				user.setFlickrToken(flickrToken.getToken());
+				user.setFlickrSecret(flickrToken.getSecret());
 				userDAO.create(user);
+				session.setAttribute("user", user);
 			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "home.jsp";
+		return "home.do";
 	}
 }

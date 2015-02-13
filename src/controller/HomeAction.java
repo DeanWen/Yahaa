@@ -44,10 +44,10 @@ public class HomeAction extends Action {
 		String fToken = user.getFlickrToken();
 		String fSecret = user.getFlickrSecret();
 		twitterToken = new Token(tToken, tSecret);
-//		flickrToken = new Token(fToken, fSecret);
+		flickrToken = new Token(fToken, fSecret);
 		
 //		twitterToken = (Token) session.getAttribute("twitterAccessToken");
-		flickrToken = (Token) session.getAttribute("flickrAccessToken");
+//		flickrToken = (Token) session.getAttribute("flickrAccessToken");
 		System.out.println("Hahahaha");
 		System.out.println("flickr token: " + flickrToken);
 
