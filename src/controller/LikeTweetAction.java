@@ -1,19 +1,14 @@
 package controller;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
-
 import org.scribe.model.Token;
 
-import databeans.FlickrBean;
-import databeans.TweetBean;
+import databeans.UserBean;
 import formbeans.LikeTweetForm;
-import model.Flickr;
 import model.Model;
 import model.Twitter;
 
@@ -35,7 +30,11 @@ public class LikeTweetAction extends Action {
 	@Override
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		twitterToken = (Token) session.getAttribute("twitterAccessToken");
+		UserBean user = (UserBean) session.getAttribute("user");
+		String tToken = user.getTwitterToken();
+		String tSecret = user.getTwitterSecret();
+		twitterToken = new Token(tToken, tSecret);
+
 		LikeTweetForm form = null;
 		try {
 			form = likeFormFactory.create(request);
