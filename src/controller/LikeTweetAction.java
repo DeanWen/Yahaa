@@ -45,6 +45,6 @@ public class LikeTweetAction extends Action {
 			e.printStackTrace();
 		}
 		
-		return "home.jsp";
+		return "home.do";
 	}
 }

@@ -127,7 +127,6 @@ public class Twitter {
 		service.signRequest(accessToken, request);
 		Response response = request.send();
 
-		System.out.println(response.getBody());
 	}
 	
 	public void sendTwitter(Token accessToken, String text)
