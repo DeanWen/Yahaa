@@ -54,7 +54,7 @@ public class TwitterCallback extends Action {
 
 			
 			// return (String) session.getAttribute("curPage");
-			return "home.do";
+			return "register.do";
 		} catch (Exception e) {
 			errors.add(e.getMessage());
 			System.out.println(e);

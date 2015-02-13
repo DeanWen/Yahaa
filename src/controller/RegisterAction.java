@@ -37,10 +37,20 @@ public class RegisterAction extends Action {
 		try {
 			String twitterId = twitter.getTwitterId(twitterToken);
 			String screenName = twitter.getUsername(twitterToken);
+			
 			UserBean user = userDAO.readByTwitterId(twitterId);
 
 			if (user != null) {
-				return "home.do";
+				if (!user.getFlickrId().isEmpty() && !user.getTwitterId().isEmpty()) {
+					session.setAttribute("user", user);
+					return "home.do";
+				}else {
+					if (user.getFlickrId().isEmpty()) {
+						return "flickrLogin.do";
+					}else {
+						return "twitterLogin.do";
+					}
+				}
 			}else {
 				user = new UserBean();
 				user.setTwitterId(twitterId);
