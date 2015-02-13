@@ -73,12 +73,13 @@ public class Twitter {
 		return userBean.getScreen_Name();
 	}
 	
-	public ArrayList<TweetBean> getTimeLine(Token accessToken) {
+	public ArrayList<TweetBean> getTimeLine(Token accessToken) throws Exception{
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
 		service.signRequest(accessToken, request);
+		
 		Response response = request.send();
 		ArrayList<TweetBean> result = new ArrayList<TweetBean>();
 		
