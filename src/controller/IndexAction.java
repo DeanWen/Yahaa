@@ -33,12 +33,6 @@ public class IndexAction extends Action {
 
 	public String perform(HttpServletRequest request) {
 		try {
-			UserBean user = new UserBean();
-			user.setFlickrId("hello");
-			userDAO.create(user);
-			
-			HttpSession session = request.getSession();
-			session.setAttribute("User", user);
 			HashMap<String, String> photos = new HashMap<String, String>();
 			photos = flickr.fetchPhotoExample();
 			request.setAttribute("photos", photos);

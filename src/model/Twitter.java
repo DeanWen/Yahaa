@@ -59,18 +59,36 @@ public class Twitter {
 		return accessToken;
 	}
 	
-	public String getUsername(Token accessToken) {
+	public String getTwitterId(Token accessToken) {
 		StringBuilder query = new StringBuilder();
-		query.append("https://api.twitter.com/1.1/account/settings.json");
-
-		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
+		query.append("https://api.twitter.com/1.1/account/verify_credentials.json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
 		service.signRequest(accessToken, request);
 		Response response = request.send();
 
-		//System.out.println(response.getBody());
-		Gson gson = new Gson();
-		UserBean userBean = gson.fromJson(response.getBody(), UserBean.class);
-		return userBean.getScreen_Name();
+		String id_str = "";
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		id_str = (String) object.get("id_str");
+		
+		return id_str;
+	}
+	
+	public String getUsername(Token accessToken) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/account/verify_credentials.json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+
+		String name = "";
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		name = (String) object.get("name");
+		
+		return name;
 	}
 	
 	public ArrayList<TweetBean> getTimeLine(Token accessToken) {

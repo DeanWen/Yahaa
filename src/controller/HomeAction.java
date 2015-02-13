@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import databeans.FlickrBean;
 import databeans.TweetBean;
+import databeans.UserBean;
 import model.Flickr;
 import model.FlickrPublic;
 import model.Model;
@@ -35,8 +36,17 @@ public class HomeAction extends Action {
 
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		twitterToken = (Token) session.getAttribute("twitterAccessToken");
-		flickrToken = (Token) session.getAttribute("flickrAccessToken");
+		
+		UserBean user = (UserBean) session.getAttribute("user");
+		String tToken = user.getTwitterToken();
+		String tSecret = user.getTwitterSecret();
+		String fToken = user.getFlickrToken();
+		String fSecret = user.getFlickrSecret();
+		twitterToken = new Token(tToken, tSecret);
+		flickrToken = new Token(fToken, fSecret);
+		
+//		twitterToken = (Token) session.getAttribute("twitterAccessToken");
+//		flickrToken = (Token) session.getAttribute("flickrAccessToken");
 		System.out.println("Hahahaha");
 		System.out.println("flickr token: " + flickrToken);
 		

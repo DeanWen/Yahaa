@@ -7,12 +7,16 @@ import javax.servlet.http.HttpSession;
 
 import org.scribe.model.Token;
 
+import DAO.UserDAO;
+import databeans.UserBean;
 import model.Twitter;
 import model.Model;
 
 public class Login extends Action {
+	private UserDAO userDAO;
 	
 	public Login(Model model) {
+		userDAO = model.getUserDAO();
 	}
 
 	public String getName() {
@@ -30,8 +34,18 @@ public class Login extends Action {
 //			if (errors.size() != 0) {
 //				return "login.do";
 //			}
-
+			
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			UserBean user = userDAO.readByUserName(username);
+			if (user != null) {
+				if (user.matchPassword(password)) {
+					session.setAttribute("user", user);
+					return "home.do";
+				}
+			}
 			return "login.jsp";
+			
 		} catch (Exception e) {
 			errors.add(e.getMessage());
 			System.out.println(e);
