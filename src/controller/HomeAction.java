@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
@@ -20,13 +21,13 @@ import model.Twitter;
 public class HomeAction extends Action {
 
 	private Twitter twitter;
-	private FlickrPublic flickr;
+	private Flickr flickr;
 	private Token twitterToken;
 	private Token flickrToken;
 	
 	public HomeAction(Model model) {
 		twitter = model.getTwitter();
-		//flickr = model.getFlickr();
+		flickr = model.getFlickr();
 	}
 
 	public String getName() { return "home.do"; }
@@ -34,6 +35,10 @@ public class HomeAction extends Action {
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		twitterToken = (Token) session.getAttribute("twitterAccessToken");
+		flickrToken = (Token) session.getAttribute("flickrAccessToken");
+		System.out.println("Hahahaha");
+		System.out.println("flickr token: " + flickrToken);
+		
 		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
 		try {
 
@@ -42,6 +47,15 @@ public class HomeAction extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		HashMap<String, String> photos = new HashMap<String, String>();
+		try {
+			photos = flickr.fetchContactPhotos(flickrToken);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println("Photos: " + photos);
+		request.setAttribute("photos", photos);
 		request.setAttribute("timeline", timeline);
 		
 		return "home.jsp";

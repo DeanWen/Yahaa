@@ -32,16 +32,7 @@ public class FetchContactsPhotos extends Action{
 		HashMap<String, String> photos = new HashMap<String, String>();
 		try {
 			photos = flickr.fetchContactPhotos(accessToken);
-		} catch (XPathExpressionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SAXException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

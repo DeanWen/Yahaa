@@ -13,18 +13,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
+
+import java.util.ArrayList;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.XMLStreamException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.Api;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -38,10 +42,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class Flickr extends HttpServlet{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private static final String API_KEY = "dd6594393674176f44ec5daeefdf86ac";
 	private static final String API_SECRET = "2f25c2e619c6ec00";
 	
@@ -75,7 +75,7 @@ public class Flickr extends HttpServlet{
 		Token accessToken = service.getAccessToken(requestToken, verifier);
 		return accessToken;
 	}
-	
+
 	public HashMap<String, String> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		HashMap<String, String> result = new HashMap<String, String>();
 		
@@ -137,4 +137,5 @@ public class Flickr extends HttpServlet{
 	public HashMap<String, String> fetchContactPhotos(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
 		return fetchContactPhotosMethod(10, accessToken);
 	}
+
 }

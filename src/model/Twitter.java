@@ -32,7 +32,8 @@ public class Twitter {
 	private static Twitter twitter = new Twitter();
 	
     public Twitter (){
-    	service = new ServiceBuilder().provider(TwitterApi.SSL.class)
+    	service = new ServiceBuilder()
+    			.provider(TwitterApi.SSL.class)
 				.apiKey(twitterKey)
 				.apiSecret(twitterSecret)
 				.callback("http://localhost:8080/Yahaa/twitterCallback.do")
