@@ -37,8 +37,6 @@ public class HomeAction extends Action {
 		HttpSession session = request.getSession();
 		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 		flickrToken = (Token) session.getAttribute("flickrAccessToken");
-		System.out.println("Hahahaha");
-		System.out.println("flickr token: " + flickrToken);
 		
 		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
 		try {
@@ -55,7 +53,7 @@ public class HomeAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Photos: " + photos);
+
 		request.setAttribute("photos", photos);
 		request.setAttribute("timeline", timeline);
 		

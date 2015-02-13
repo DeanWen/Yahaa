@@ -89,35 +89,16 @@ public class Twitter {
 			JSONObject next = iterator.next();
 			String text = (String) next.get("text");
 			Long count = (Long) next.get("favorite_count");
+			Long id = (Long) next.get("id");
 			TweetBean tempBean = new TweetBean();
 			tempBean.setContent(text);
 			tempBean.setLikeCount(count);
+			tempBean.setId(id);
 			result.add(tempBean);
 		}
 		
 		return result;
 	}
-	
-//	public ArrayList<Integer> getLikes(Token accessToken) {
-//		StringBuilder query = new StringBuilder();
-//		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
-//		
-//		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
-//		service.signRequest(accessToken, request);
-//		Response response = request.send();
-//		ArrayList<Integer> result = new ArrayList<Integer>();
-//		
-//		JSONArray msgArray = (JSONArray) JSONValue.parse(response.getBody());
-//
-//		Iterator<JSONObject> iterator = msgArray.iterator();
-//		while (iterator.hasNext()) {
-//			JSONObject next = iterator.next();
-//			Integer count = (Integer) next.get("favourites_count");
-//			result.add(count);
-//		}
-//		
-//		return result;
-//	}
 	
 	public void like(Token accessToken, long tweetId) {
 		StringBuilder query = new StringBuilder();
@@ -138,7 +119,6 @@ public class Twitter {
 
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		service.signRequest(accessToken, request);
-		//System.out.println(request);
 		
 		Response response = request.send();
 		
