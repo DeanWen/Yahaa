@@ -43,7 +43,11 @@ public class UserBean implements Serializable {
 	public int getLikeGiven() {
 		return likeGiven;
 	}
-
+	
+	public boolean matchPassword (String password) {
+		return this.password.equals(password);
+	}
+	
 	public void setLikeGiven(int likeGiven) {
 		this.likeGiven = likeGiven;
 	}
@@ -110,5 +114,21 @@ public class UserBean implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getTwitterSecret() {
+		return twitterSecret;
+	}
+
+	public void setTwitterSecret(String twitterSecret) {
+		this.twitterSecret = twitterSecret;
+	}
+
+	public String getFlickrSecret() {
+		return flickrSecret;
+	}
+
+	public void setFlickrSecret(String flickrSecret) {
+		this.flickrSecret = flickrSecret;
 	}
 }
