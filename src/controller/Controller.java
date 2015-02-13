@@ -28,6 +28,7 @@ public class Controller extends HttpServlet {
 		Action.add(new RegisterAction(model));
 		Action.add(new setPassword(model));
 		Action.add(new LikeFlickrAction(model));
+		Action.add(new logoutAction(model));
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
@@ -16,7 +14,6 @@ import databeans.FlickrBean;
 import databeans.TweetBean;
 import databeans.UserBean;
 import model.Flickr;
-import model.FlickrPublic;
 import model.Model;
 import model.Twitter;
 
@@ -36,7 +33,9 @@ public class HomeAction extends Action {
 
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-
+		if (session.getAttribute("user") == null) {
+			return "index.jsp";
+		}
 		
 		UserBean user = (UserBean) session.getAttribute("user");
 		String tToken = user.getTwitterToken();

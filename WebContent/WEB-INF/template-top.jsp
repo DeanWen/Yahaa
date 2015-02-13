@@ -55,7 +55,7 @@
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
 							<li><a href="login.do">Login</a></li>
-							<li class="current"><a href="index.jsp">Home</a></li>
+							<li class="current"><a href="index.do">Home</a></li>
 							<li><a href="logout.do">Logout</a></li>
 							
 						</ul>
