@@ -1,6 +1,11 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
@@ -10,9 +15,14 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+
 import com.google.gson.Gson;
 
 import databeans.UserBean;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 
 public class Twitter {
@@ -64,15 +74,25 @@ public class Twitter {
 		return userBean.getScreen_name();
 	}
 	
-	public String getTimeLine(Token accessToken) {
+	public ArrayList<String> getTimeLine(Token accessToken) {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
 		service.signRequest(accessToken, request);
 		Response response = request.send();
+		ArrayList<String> result = new ArrayList<String>();
 		
-		return response.getBody();
+		JSONArray msgArray = (JSONArray) JSONValue.parse(response.getBody());
+
+		Iterator<JSONObject> iterator = msgArray.iterator();
+		while (iterator.hasNext()) {
+			JSONObject next = iterator.next();
+			String text = (String) next.get("text");
+			result.add(text);
+		}
+		
+		return result;
 	}
 	
 	public void like(Token accessToken, long tweetId) {
