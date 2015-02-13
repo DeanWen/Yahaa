@@ -54,11 +54,9 @@
 				<div class="grid_12">
 					<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 						<ul class="sf-menu">
-							<li><a href="#">About</a></li>
-							<li><a href="#">Gallery</a></li>
-							<li class="current"><a href="index.jsp">Home</a></li>
-							<li><a href="flickrLogin.do">Flickr Login</a></li>
 							<li><a href="twitterLogin.do">Twitter Login</a></li>
+							<li class="current"><a href="index.jsp">Home</a></li>
+							<li><a href="twitterLogin.do">Flickr Login</a></li>
 						</ul>
 					</nav>
 					<div class="clear"></div>
