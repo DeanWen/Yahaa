@@ -21,6 +21,8 @@ public class UserBean implements Serializable {
 	private int likeGiven;
 	private int likeReceived;
 	private String password = null;
+	private String twitterSecret = null;
+	private String flickrSecret = null;
 	
 	public int getLikeGiven() {
 		return likeGiven;
@@ -92,5 +94,21 @@ public class UserBean implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getTwitterSecret() {
+		return twitterSecret;
+	}
+
+	public void setTwitterSecret(String twitterSecret) {
+		this.twitterSecret = twitterSecret;
+	}
+
+	public String getFlickrSecret() {
+		return flickrSecret;
+	}
+
+	public void setFlickrSecret(String flickrSecret) {
+		this.flickrSecret = flickrSecret;
 	}
 }

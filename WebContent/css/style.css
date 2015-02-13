@@ -2,6 +2,8 @@
 @import "grid.css";
 @import "font-awesome.css";
 @import "superfish.css";
+@import url(http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
 
 html {
 	width: 100%;
@@ -13,10 +15,20 @@ a[href^="tel:"] {
  color: inherit;
  text-decoration: none;
 }
+* { 
+	-webkit-font-smoothing:antialiased; 
+	-moz-font-smoothing:antialiased; 
+	-ms-font-smoothing:antialiased; 
+	-o-font-smoothing:antialiased; 
+	font-smoothing:antialiased; 
+	}
 
-* {
-	-webkit-text-size-adjust: none;
-}
+
+
+
+
+
+
 
 body {
 	position: relative;
@@ -42,9 +54,7 @@ body {
 p {
     margin-bottom: 18px;
 }
-
-
-	strong {
+strong {
 		font-weight: 700;
 	}
 
@@ -94,11 +104,7 @@ h4.head1 {
     padding-top: 51px;
 }
 
-.map h4 {
-    padding-top: 0;
-    margin-bottom: 19px;
-    font-weight: normal;
-}
+
 
 /****Lists****/
 
@@ -316,7 +322,7 @@ header h1 a img {
 .p1_box a.bot span {
     display: block;
     position: absolute;
-    color: #fff;
+    color:#fff;
     font-size: 18px;
     line-height: 18px;
     right: -1px;
@@ -392,6 +398,7 @@ border-color: transparent #ff6360 transparent transparent;
 }
 
 
+
 .cl2 {
     border-color: #7ae0ed;
     margin-bottom: 38px;
@@ -414,10 +421,6 @@ border-color: transparent #ff6360 transparent transparent;
 
 .col1 {
     color: #ff6260;
-}
-
-.col1 a.bot span:hover {
-    color: #000;
 }
 
 .cl2:after {
@@ -486,11 +489,6 @@ border-color: transparent #ff6360 transparent transparent;
     line-height: 36px;
 }
 
-.cl4 a.bot span:hover {
-    color: #fff;
-    background-color: #2a394e;
-    border-color: #2a394e;
-}
 
 .cl4 .type {
     background-image: url(../images/heart_icon.png);
@@ -582,6 +580,7 @@ border-color: transparent #ff6360 transparent transparent;
     top: 53px;
     border-color: transparent #7AE0ED transparent transparent !important;
 }
+
 
 a.round {
     width: 83px;
@@ -867,10 +866,52 @@ footer {
     outline: medium none;
 }
 
-.fa-heart-o {
-	fontsize: 48px;
+a.bot span h2{
+   color:#4f4f4f;
+}
+a.bot span{
+    display: inline-block;
+    position: absolute;
+    text-decoration:none;
+    color:#fff;
+    -webkit-transition: -webkit-transform 0.1s;
+    position:relative;
+    overflow:hidden;
+}
+a.bot span i{
+font-size: 25px;
+color: #fff;
+text-align: center;
+display: block;
+margin-top: 10px; /* outside Codepen is actually 30px */
+}
+a.bot span:hover{
+    -webkit-transform: scale(1.05);
 }
 
-.fa-heart-o:hover {
-	color: #ff6765;
+a.bot span:active{
+    -webkit-transform: scale(1);
+}
+a.bot span{
+    display: inline-block;
+    position: absolute;
+    text-decoration:none;
+    -webkit-transition: -webkit-transform 0.1s;
+    position:relative;
+    overflow:hidden;
+}
+a.bot span i{
+font-size: 25px;
+text-align: center;
+display: block;
+margin-top: 10px; /* outside Codepen is actually 30px */
+}
+a.bot span i:hover{
+    -webkit-transform: scale(1.05);
+    color:#ef3619;
+}
+
+a.bot span:active{
+    -webkit-transform: scale(1);
+    color: #ef3619;
 }
