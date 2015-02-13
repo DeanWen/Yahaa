@@ -65,6 +65,6 @@ public class RegisterAction extends Action {
 			e.printStackTrace();
 		}
 		
-		return "home.do";
+		return "register.jsp";
 	}
 }
