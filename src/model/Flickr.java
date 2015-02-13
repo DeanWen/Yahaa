@@ -74,7 +74,56 @@ public class Flickr extends HttpServlet{
 		Token accessToken = service.getAccessToken(requestToken, verifier);
 		return accessToken;
 	}
+	
+	public String getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
+		
+		HttpURLConnection connection = null;
+		String query = "flickr.photos.getFavorites";
+		URL url = new URL(
+				"http://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
+				+ "&photo_id=" + id
+		);
+		
+		String address = "https://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
+				+ "&photo_id=" + id;
+		OAuthRequest request = new OAuthRequest(Verb.GET, address);
+		
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+		System.out.println("URL: " + address);
+		
+		String filename = "total.xml";
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(response.getStream()));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
+		
+		String nextline;
+		while ((nextline = br.readLine()) != null) {
+			bw.write(nextline);// fastest the way to read and write
+		}
+		br.close();
+		bw.close();
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setValidating(false);
+		dbf.setNamespaceAware(true);
+		
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.parse(new FileInputStream(new File("total.xml")));
+		
+		XPathFactory factory = XPathFactory.newInstance();
+		XPath xpath = factory.newXPath();
+		
+		NodeList nodeList = (NodeList) xpath.evaluate("//photo", doc, XPathConstants.NODESET);
+		
+		Node node =nodeList.item(0);
+			
+		String total = (String) xpath.evaluate("@total", node, XPathConstants.STRING);
+		System.out.println(total);
+		return total;				
+	}
 
+	
 	public ArrayList<FlickrBean> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		ArrayList<FlickrBean> result = new ArrayList<FlickrBean>();
 		

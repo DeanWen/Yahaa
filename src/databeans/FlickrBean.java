@@ -6,6 +6,7 @@ public class FlickrBean {
 	private long id;
 	private String url;
 	private long likeCount;
+	private String total; //like count
 	private String title;
 
 	public long getId() {
@@ -36,5 +37,12 @@ public class FlickrBean {
 	}
 	public void setLikeCount(long likeCount) {
 		this.likeCount = likeCount;
+	}
+	
+	public String getTotal() {
+		return total;
+	}
+	public void setTotal(String total) {
+		this.total = total;
 	}
 }
