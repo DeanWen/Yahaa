@@ -41,6 +41,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import databeans.FlickrBean;
+
 public class Flickr extends HttpServlet{
 	private static final String API_KEY = "dd6594393674176f44ec5daeefdf86ac";
 	private static final String API_SECRET = "2f25c2e619c6ec00";
@@ -76,8 +78,8 @@ public class Flickr extends HttpServlet{
 		return accessToken;
 	}
 
-	public HashMap<String, String> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
-		HashMap<String, String> result = new HashMap<String, String>();
+	public ArrayList<FlickrBean> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
+		ArrayList<FlickrBean> result = new ArrayList<FlickrBean>();
 		
 		HttpURLConnection connection = null;
 		String query = "flickr.photos.getContactsPhotos";
@@ -127,14 +129,18 @@ public class Flickr extends HttpServlet{
 			String flickrurl = "http://static.flickr.com/" + server + "/" + id + "_" + secret + ".jpg";
 			String title = (String) xpath.evaluate("@title", node, XPathConstants.STRING);
 			
-			result.put(flickrurl, title);
+			FlickrBean tempBean = new FlickrBean();
+			tempBean.setTitle(title);
+			tempBean.setUrl(flickrurl);
+			
+			result.add(tempBean);
 		}
 		
 		System.out.println(result.size() + " Photos");
 		return result;
 	}
 	
-	public HashMap<String, String> fetchContactPhotos(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
+	public ArrayList<FlickrBean> fetchContactPhotos(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
 		return fetchContactPhotosMethod(10, accessToken);
 	}
 

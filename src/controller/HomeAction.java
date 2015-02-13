@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.scribe.model.Token;
 import org.xml.sax.SAXException;
 
+import databeans.FlickrBean;
 import databeans.TweetBean;
 import model.Flickr;
 import model.FlickrPublic;
@@ -47,7 +48,7 @@ public class HomeAction extends Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		HashMap<String, String> photos = new HashMap<String, String>();
+		ArrayList<FlickrBean> photos = new ArrayList<FlickrBean>();
 		try {
 			photos = flickr.fetchContactPhotos(flickrToken);
 		} catch (Exception e) {

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.scribe.model.Token;
 import org.xml.sax.SAXException;
 
+import databeans.FlickrBean;
 import model.Flickr;
 import model.Model;
 
@@ -29,7 +31,7 @@ public class FetchContactsPhotos extends Action{
 		HttpSession session = request.getSession();
 		Token accessToken = (Token) session.getAttribute("flickrAccessToken");
 		System.out.println("access token: " + accessToken);
-		HashMap<String, String> photos = new HashMap<String, String>();
+		ArrayList<FlickrBean> photos = new ArrayList<FlickrBean>();
 		try {
 			photos = flickr.fetchContactPhotos(accessToken);
 		} catch (Exception e) {
