@@ -15,6 +15,7 @@ public class Model {
 	private final String flickrSecret;
 
 	private final Twitter twitter;
+	private final Flickr flickr;
 	private final FlickrPublic flickrPublic;
 
 	private UserDAO userDAO;
@@ -26,6 +27,7 @@ public class Model {
 		flickrSecret = config.getInitParameter("FlickrSecret");
 		
 		twitter = new Twitter();
+		flickr = new Flickr();
 		flickrPublic = new FlickrPublic(flickrKey);
 
 		try {
@@ -51,5 +53,9 @@ public class Model {
 
 	public UserDAO getUserDAO() {
 		return userDAO;
+	}
+	
+	public Flickr getFlickr() {
+		return flickr;
 	}
 }
