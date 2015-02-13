@@ -45,7 +45,7 @@ public class Model {
 		return twitter;
 	}
 
-	public FlickrPublic getFlickr() {
+	public FlickrPublic getFlickrPublic() {
 		return flickrPublic;
 	}
 
