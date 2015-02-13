@@ -67,11 +67,11 @@ public class UserDAO extends GenericDAO<UserBean> {
 		}
 	}
 	
-	public UserBean readByUserId (String userId) throws DAOException {
+	public UserBean readByUserName (String username) throws DAOException {
 		try {
-			UserBean[] array = match(MatchArg.equals("id", userId));
+			UserBean[] array = match(MatchArg.equals("screen_Name", username));
 			if (array == null || array.length == 0) {
-				return null;
+				throw new RollbackException("No Such User");
 			} else {
 				return array[0];
 			}

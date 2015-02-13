@@ -12,18 +12,25 @@
 
 						<div class="p1_box left cl2">
 							<blockquote>${tweet.getContent()}</blockquote>
-							<a class="bot"> <span>${tweet.getLikeCount()}
+							<form action="likeTweet.do" method="POST" name="likeTweet_form">
+							<input type="hidden" name="id" value="${tweet.getId()}"/>
+							<a href="#" class="bot"> <span>${tweet.getLikeCount()}
 									<br>Likes
 							</span></a>
+							<input type="submit" name="button" value ="Submit"/>
+							</form>
 						</div>
 
 					</c:when>
 					<c:otherwise>
 						<div class="p1_box left cl5">
 							<blockquote>${tweet.getContent()}</blockquote>
-							<a class="bot"> <span>${tweet.getLikeCount()}
+							<form action="likeTweet.do" method="POST" name="likeTweet_form">
+							<input type="hidden" name="id" value="${tweet.getId()}"/>
+							<a href="#" class="bot"> <span>${tweet.getLikeCount()}
 									<br>Likes
 							</span></a>
+							</form>
 						</div>
 					</c:otherwise>
 				</c:choose>
@@ -34,6 +41,7 @@
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
                     <img src="${photo.getUrl() }" alt="">
+<<<<<<< HEAD
                     <a class="bot">"${photo.getTitle()}"<span>
                     <i class = "icon-heart"></i>
                     <h2>Favorite</h2>
@@ -42,6 +50,15 @@
                    
                     
                    </a>
+=======
+                    <form action="likeFlickr.do" method="POST" name="likeFlickr_form">
+							<input type="hidden" name="id" value="${photo.getId()}"/>
+                    <a class="bot">"${photo.getTitle()}"<span><br>${photo.getLikeCount()}
+                    	<br>Likes
+                    </span></a>
+                    <input type="submit" name="button" value ="Submit"/>
+					</form>
+>>>>>>> fd8beea50f198bb6aae8747c263a446b537a9a06
                 </div>
             </c:forEach>
         </div>

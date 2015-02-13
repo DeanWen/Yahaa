@@ -23,11 +23,19 @@ public class UserBean implements Serializable {
 	private String password = null;
 	private String twitterSecret = null;
 	private String flickrSecret = null;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> fd8beea50f198bb6aae8747c263a446b537a9a06
 	public int getLikeGiven() {
 		return likeGiven;
 	}
-
+	
+	public boolean matchPassword (String password) {
+		return this.password.equals(password);
+	}
+	
 	public void setLikeGiven(int likeGiven) {
 		this.likeGiven = likeGiven;
 	}

@@ -1,23 +1,24 @@
 package controller;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import DAO.UserDAO;
-import databeans.UserBean;
 import model.Model;
+import databeans.UserBean;
 
-public class Login extends Action {
+public class setPassword extends Action {
 	private UserDAO userDAO;
 	
-	public Login(Model model) {
+	public setPassword (Model model) {
 		userDAO = model.getUserDAO();
 	}
 
 	public String getName() {
-		return "login.do";
+		return "setPassword.do";
 	}
 
 	public String perform(HttpServletRequest request) {
@@ -27,21 +28,18 @@ public class Login extends Action {
 		request.setAttribute("errors", errors);
 		HttpSession session = request.getSession();
 		
-		try {			
-			String username = request.getParameter("username");
+		try {		
 			String password = request.getParameter("password");
-			UserBean user = userDAO.readByUserName(username);
-			if (user != null) {
-				if (user.matchPassword(password)) {
-					session.setAttribute("user", user);
-					return "home.do";
-				}
+			UserBean user = (UserBean) session.getAttribute("user");
+			if (user.getPassword() == null || user.getPassword().isEmpty()) {
+				user.setPassword(password);
+				userDAO.update(user);
 			}
-					
+			return "home.do";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "login.jsp";	
+		return "register.jsp";
 	}
 }

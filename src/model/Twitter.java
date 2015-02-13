@@ -59,26 +59,45 @@ public class Twitter {
 		return accessToken;
 	}
 	
-	public String getUsername(Token accessToken) {
+	public String getTwitterId(Token accessToken) {
 		StringBuilder query = new StringBuilder();
-		query.append("https://api.twitter.com/1.1/account/settings.json");
-
-		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
+		query.append("https://api.twitter.com/1.1/account/verify_credentials.json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
 		service.signRequest(accessToken, request);
 		Response response = request.send();
 
-		//System.out.println(response.getBody());
-		Gson gson = new Gson();
-		UserBean userBean = gson.fromJson(response.getBody(), UserBean.class);
-		return userBean.getScreen_Name();
+		String id_str = "";
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		id_str = (String) object.get("id_str");
+		
+		return id_str;
 	}
 	
-	public ArrayList<TweetBean> getTimeLine(Token accessToken) {
+	public String getUsername(Token accessToken) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/account/verify_credentials.json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+
+		String name = "";
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		name = (String) object.get("name");
+		
+		return name;
+	}
+	
+	public ArrayList<TweetBean> getTimeLine(Token accessToken) throws Exception{
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
 		service.signRequest(accessToken, request);
+		
 		Response response = request.send();
 		ArrayList<TweetBean> result = new ArrayList<TweetBean>();
 		
@@ -89,35 +108,16 @@ public class Twitter {
 			JSONObject next = iterator.next();
 			String text = (String) next.get("text");
 			Long count = (Long) next.get("favorite_count");
+			Long id = (Long) next.get("id");
 			TweetBean tempBean = new TweetBean();
 			tempBean.setContent(text);
 			tempBean.setLikeCount(count);
+			tempBean.setId(id);
 			result.add(tempBean);
 		}
 		
 		return result;
 	}
-	
-//	public ArrayList<Integer> getLikes(Token accessToken) {
-//		StringBuilder query = new StringBuilder();
-//		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
-//		
-//		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
-//		service.signRequest(accessToken, request);
-//		Response response = request.send();
-//		ArrayList<Integer> result = new ArrayList<Integer>();
-//		
-//		JSONArray msgArray = (JSONArray) JSONValue.parse(response.getBody());
-//
-//		Iterator<JSONObject> iterator = msgArray.iterator();
-//		while (iterator.hasNext()) {
-//			JSONObject next = iterator.next();
-//			Integer count = (Integer) next.get("favourites_count");
-//			result.add(count);
-//		}
-//		
-//		return result;
-//	}
 	
 	public void like(Token accessToken, long tweetId) {
 		StringBuilder query = new StringBuilder();
@@ -127,7 +127,6 @@ public class Twitter {
 		service.signRequest(accessToken, request);
 		Response response = request.send();
 
-		System.out.println(response.getBody());
 	}
 	
 	public void sendTwitter(Token accessToken, String text)
@@ -138,7 +137,6 @@ public class Twitter {
 
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		service.signRequest(accessToken, request);
-		//System.out.println(request);
 		
 		Response response = request.send();
 		

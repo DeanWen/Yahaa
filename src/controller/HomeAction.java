@@ -14,6 +14,7 @@ import org.xml.sax.SAXException;
 
 import databeans.FlickrBean;
 import databeans.TweetBean;
+import databeans.UserBean;
 import model.Flickr;
 import model.FlickrPublic;
 import model.Model;
@@ -35,10 +36,21 @@ public class HomeAction extends Action {
 
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		twitterToken = (Token) session.getAttribute("twitterAccessToken");
-		flickrToken = (Token) session.getAttribute("flickrAccessToken");
+
+		
+		UserBean user = (UserBean) session.getAttribute("user");
+		String tToken = user.getTwitterToken();
+		String tSecret = user.getTwitterSecret();
+		String fToken = user.getFlickrToken();
+		String fSecret = user.getFlickrSecret();
+		twitterToken = new Token(tToken, tSecret);
+		flickrToken = new Token(fToken, fSecret);
+		
+//		twitterToken = (Token) session.getAttribute("twitterAccessToken");
+//		flickrToken = (Token) session.getAttribute("flickrAccessToken");
 		System.out.println("Hahahaha");
 		System.out.println("flickr token: " + flickrToken);
+
 		
 		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
 		try {
@@ -55,7 +67,33 @@ public class HomeAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Photos: " + photos);
+		
+		for (int i = 0; i < photos.size(); i++) {
+			String id = photos.get(i).getId();
+			System.out.println(id);
+			int likeCount = 0;
+			try {
+				likeCount = flickr.getFavoriteTotal(id, flickrToken);
+			} catch (XPathExpressionException | IOException
+					| ParserConfigurationException | SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			photos.get(i).setLikeCount(likeCount);
+			System.out.println(likeCount);
+		}
+		
+		int test = 0;
+		try {
+			test = flickr.getFavoriteTotal("16333373119", flickrToken);
+		} catch (XPathExpressionException | IOException
+				| ParserConfigurationException | SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(test);
+		flickr.addFavourites(flickrToken, "16333373119");
+		
 		request.setAttribute("photos", photos);
 		request.setAttribute("timeline", timeline);
 		
