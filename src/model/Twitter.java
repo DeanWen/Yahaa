@@ -15,6 +15,7 @@ import org.scribe.oauth.OAuthService;
 
 import com.google.gson.Gson;
 
+import databeans.TweetBean;
 import databeans.UserBean;
 
 import org.json.simple.JSONArray;
@@ -71,14 +72,14 @@ public class Twitter {
 		return userBean.getScreen_Name();
 	}
 	
-	public ArrayList<String> getTimeLine(Token accessToken) {
+	public ArrayList<TweetBean> getTimeLine(Token accessToken) {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
 		
 		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
 		service.signRequest(accessToken, request);
 		Response response = request.send();
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<TweetBean> result = new ArrayList<TweetBean>();
 		
 		JSONArray msgArray = (JSONArray) JSONValue.parse(response.getBody());
 
@@ -86,11 +87,36 @@ public class Twitter {
 		while (iterator.hasNext()) {
 			JSONObject next = iterator.next();
 			String text = (String) next.get("text");
-			result.add(text);
+			Long count = (Long) next.get("favorite_count");
+			TweetBean tempBean = new TweetBean();
+			tempBean.setContent(text);
+			tempBean.setLikeCount(count);
+			result.add(tempBean);
 		}
 		
 		return result;
 	}
+	
+//	public ArrayList<Integer> getLikes(Token accessToken) {
+//		StringBuilder query = new StringBuilder();
+//		query.append("https://api.twitter.com/1.1/statuses/home_timeline.json");
+//		
+//		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+//		service.signRequest(accessToken, request);
+//		Response response = request.send();
+//		ArrayList<Integer> result = new ArrayList<Integer>();
+//		
+//		JSONArray msgArray = (JSONArray) JSONValue.parse(response.getBody());
+//
+//		Iterator<JSONObject> iterator = msgArray.iterator();
+//		while (iterator.hasNext()) {
+//			JSONObject next = iterator.next();
+//			Integer count = (Integer) next.get("favourites_count");
+//			result.add(count);
+//		}
+//		
+//		return result;
+//	}
 	
 	public void like(Token accessToken, long tweetId) {
 		StringBuilder query = new StringBuilder();

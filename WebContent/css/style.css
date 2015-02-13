@@ -304,7 +304,7 @@ header h1 a img {
 
 .p1_box a.bot {
     margin-top: 1px;
-    padding: 22px 0 20px 42px;
+    padding: 18px 0 20px 42px;
     border: 2px solid #ff6765;
     display: block;
     position: relative;
@@ -325,7 +325,7 @@ header h1 a img {
     background-color: #ff8382;
     width: 81px;
     text-align: center;
-    padding-top: 18px;
+    padding-top: 5px;
 }
 
 .p1_box a.bot:hover {

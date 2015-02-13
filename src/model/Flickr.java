@@ -1,5 +1,6 @@
 package model;
 
+<<<<<<< HEAD
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,6 +14,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.net.ssl.HttpsURLConnection;
+=======
+import java.util.ArrayList;
+
+>>>>>>> FETCH_HEAD
 import javax.servlet.http.HttpServlet;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -76,6 +81,7 @@ public class Flickr extends HttpServlet{
 		return accessToken;
 	}
 	
+<<<<<<< HEAD
 	public HashMap<String, String> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		HashMap<String, String> result = new HashMap<String, String>();
 		
@@ -137,4 +143,6 @@ public class Flickr extends HttpServlet{
 	public HashMap<String, String> fetchContactPhotos(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
 		return fetchContactPhotosMethod(10, accessToken);
 	}
+=======
+>>>>>>> FETCH_HEAD
 }
