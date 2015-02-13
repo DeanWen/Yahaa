@@ -31,6 +31,24 @@
       <param-name>FlickerSecret</param-name>
       <param-value>   2f25c2e619c6ec00    </param-value>
     </init-param>
+    
+    <init-param>
+      <param-name>jdbcDriverName</param-name>
+      <param-value>   com.mysql.jdbc.Driver   </param-value>
+    </init-param>
+    <init-param>
+      <param-name>jdbcURL</param-name>
+      <param-value>   jdbc:mysql://my-east-db-instance.cq6vzlml6j4g.us-east-1.rds.amazonaws.com:3306/applicationDB  </param-value>
+    </init-param>
+    <init-param>
+      <param-name>db_username</param-name>
+      <param-value>   root   </param-value>
+    </init-param>
+    <init-param>
+      <param-name>db_password</param-name>
+      <param-value>  12345678   </param-value>
+    </init-param>
+    
   </servlet>
   <servlet-mapping>
     <servlet-name>controller-servlet</servlet-name>
