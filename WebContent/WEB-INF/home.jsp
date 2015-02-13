@@ -12,13 +12,9 @@
 
 						<div class="p1_box left cl2">
 							<blockquote>${tweet.getContent()}</blockquote>
-<<<<<<< HEAD
 							<form action="likeTweet.do" method="POST" id="likeTweet_form">
 							<input type="hidden" name="id" value="${tweet.getId()}"/>
 							<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="bot"> <span>${tweet.getLikeCount()}
-=======
-							<a class="bot"> <span>${tweet.getLikeCount()}
->>>>>>> FETCH_HEAD
 									<br>Likes
 							</span></a>
 							</form>
@@ -28,13 +24,9 @@
 					<c:otherwise>
 						<div class="p1_box left cl5">
 							<blockquote>${tweet.getContent()}</blockquote>
-<<<<<<< HEAD
 							<form action="likeTweet.do" method="POST" id="likeTweet_form">
 							<input type="hidden" name="id" value="${tweet.getId()}"/>
 							<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="bot"> <span>${tweet.getLikeCount()}
-=======
-							<a class="bot"> <span>${tweet.getLikeCount()}
->>>>>>> FETCH_HEAD
 									<br>Likes
 							</span></a>
 							</form>
