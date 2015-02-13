@@ -62,7 +62,7 @@ public class FlickrCallback extends Action{
 			session.setAttribute("flickrAccessToken", accessToken);
 			
 			// return (String) session.getAttribute("curPage");
-			return "home.do";
+			return "register.do";
 		} catch (Exception e) {
 			errors.add(e.getMessage());
 			System.out.println(e);

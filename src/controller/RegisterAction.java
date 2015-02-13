@@ -34,15 +34,16 @@ public class RegisterAction extends Action {
 		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 		flickrToken = (Token) session.getAttribute("flickrAccessToken");
 		
-		try {
-			String twitterId = twitter.getTwitterId(twitterToken);
-			String screenName = twitter.getUsername(twitterToken);	
+		try {	
 			if (twitterToken == null) {
 				return "twitterLogin.do";
 			}
 			if (flickrToken == null) {
 				return "flickrLogin.do";
 			}
+			
+			String twitterId = twitter.getTwitterId(twitterToken);
+			String screenName = twitter.getUsername(twitterToken);
 			
 			UserBean user = userDAO.readByTwitterId(twitterId);
 			if (user != null) {
