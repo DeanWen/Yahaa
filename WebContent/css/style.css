@@ -328,9 +328,6 @@ header h1 a img {
     padding-top: 5px;
 }
 
-.p1_box a.bot:hover {
-    background-color: #fff;
-}
 
 .p1_box.left {
     margin-right: 23px;
@@ -419,7 +416,7 @@ border-color: transparent #ff6360 transparent transparent;
     color: #ff6260;
 }
 
-.col1 a:hover {
+.col1 a.bot span:hover {
     color: #000;
 }
 
@@ -460,12 +457,6 @@ border-color: transparent #ff6360 transparent transparent;
     background-color: #a9cd75;
 }
 
-a.bot span strong {
-    font-size: 46px;
-    position: relative;
-    top: -5px;
-}
-
 .cl3:before {
     top: 79px !important;
     background-color: #93c052;
@@ -495,7 +486,7 @@ a.bot span strong {
     line-height: 36px;
 }
 
-.cl4 a.bot:hover {
+.cl4 a.bot span:hover {
     color: #fff;
     background-color: #2a394e;
     border-color: #2a394e;
@@ -801,64 +792,6 @@ a.gal:hover img {
     height: 40px;
     background-color: #c8ced4;
 }
-/**Map**/
-
-.map {
-    overflow: hidden;
-    position: relative;
-    margin-top: -2px;
-}
-
- 
-
-.map figure {
-    position: relative;
-	display: block;
-	width: 100%;
-    border: 2px solid #ffe388;
-    margin-bottom: 33px;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-
-.map figure iframe {
-	width: 100%;
-	height: 258px;
-	max-width: 100%;
-}
-.map address {
-    margin-bottom: 15px;
-    margin-top: -2px;
-	display: block;
-}
-
-.map .fright {
-}
-
-.map address dt {
-    margin-bottom: 18px;
-}
-
- address dd span {
-	min-width: 70px;
-	display: inline-block;
-	text-align: left;
-}
-
-.map address dd span.col1 {
-	min-width: 0;
-}
-
- address dd strong {
-    font-weight: normal;
- }
-
-.map a {
-
-}
 
 
 a.link-1 {
@@ -932,4 +865,12 @@ footer {
 #toTop:hover {
     background-position: right 0;
     outline: medium none;
+}
+
+.fa-heart-o {
+	fontsize: 48px;
+}
+
+.fa-heart-o:hover {
+	color: #ff6765;
 }

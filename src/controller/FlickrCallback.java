@@ -1,10 +1,8 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -62,7 +60,6 @@ public class FlickrCallback extends Action{
 			//System.out.println(twitter.getTimeLine(accessToken));
 			
 			session.setAttribute("flickrAccessToken", accessToken);
-
 			
 			// return (String) session.getAttribute("curPage");
 			return "home.do";
