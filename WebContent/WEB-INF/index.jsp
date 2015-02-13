@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="template-top.jsp" />
 <!--==============================Content=================================-->
-	<div class="content"><div class="ic">More Website Templates @ TemplateMonster.com - December 30, 2013!</div>
+	<div class="content"><div class="ic"> </div>
 		<div class="container_12">
 			
 			<c:forEach var="photo" items="${photos}">
