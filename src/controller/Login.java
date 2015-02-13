@@ -30,9 +30,11 @@ public class Login extends Action {
 		try {			
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			UserBean user = userDAO.readByUserName(username);
-			if (user != null) {
-				if (password != null && password.length() != 0 && user.matchPassword(password)) {
+			
+			if (username != null && username.trim().length() != 0) {
+				UserBean user = userDAO.readByUserName(username);
+				if (user != null && password != null && 
+						password.trim().length() != 0 && user.matchPassword(password)) {
 					session.setAttribute("user", user);
 					return "home.do";
 				}
