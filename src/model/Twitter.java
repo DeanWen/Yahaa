@@ -71,7 +71,7 @@ public class Twitter {
 		//System.out.println(response.getBody());
 		Gson gson = new Gson();
 		UserBean userBean = gson.fromJson(response.getBody(), UserBean.class);
-		return userBean.getScreen_name();
+		return userBean.getScreen_Name();
 	}
 	
 	public ArrayList<String> getTimeLine(Token accessToken) {
