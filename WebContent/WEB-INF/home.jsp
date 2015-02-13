@@ -41,9 +41,13 @@
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
                     <img src="${photo.getUrl() }" alt="">
+                    <form action="likeFlickr.do" method="POST" name="likeFlickr_form">
+							<input type="hidden" name="id" value="${photo.getId()}"/>
                     <a class="bot">"${photo.getTitle()}"<span><br>${photo.getLikeCount()}
                     	<br>Likes
                     </span></a>
+                    <input type="submit" name="button" value ="Submit"/>
+					</form>
                 </div>
             </c:forEach>
         </div>
