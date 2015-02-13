@@ -7,19 +7,19 @@
             
             <c:forEach var="tweet" items="${timeline}">
             <c:choose>
-            <c:when test="${fn:length(tweet) mod 3 eq 0}" >
+            <c:when test="${fn:length(tweet) mod 2 eq 0}" >
             <div class="grid_6">
-                <div class="p1_box left cl3 pos1">
-                    <p class="bot">${tweet}</p>
-                    <a href="index-3.html" class="bot">"${photo.getValue()}"<span><strong class="fa-angle-right fa"></strong></span></a>
+                <div class="p1_box left cl2">
+                    <blockquote>${tweet}</blockquote>
+                    <a href="#" class="bot">Elliott Erwitt <span>8 <br>comments</span></a>
                 </div>
             </div>
             </c:when>
             <c:otherwise>
             <div class="grid_6">
-                <div class="p1_box right cl2">
-                    <p class="bot">${tweet}</p>
-                    <a href="#" class="bot">"${photo.getValue()}"<span><strong class=" fa-angle-right fa"></strong></span></a>
+                <div class="p1_box right cl5">
+                    <blockquote>${tweet}</blockquote>
+                    <a href="#" class="bot">Elliott Erwitt <span>8 <br>comments</span></a>
                 </div>
             </div>
             </c:otherwise>

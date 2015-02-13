@@ -437,6 +437,13 @@ border-color: transparent #ff6360 transparent transparent;
     background-color: #9ce8f2;
 }
 
+.cl2 blockquote {
+    background: url(../images/quotes_bg.png) 8px 40px no-repeat #f3f6f8;
+    line-height: 24px;
+    font-style: italic;
+    padding: 50px 12px 9px 34px;
+}
+
 .cl3 {
    position: relative;
    top: 1px;

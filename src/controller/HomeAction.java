@@ -25,7 +25,7 @@ public class HomeAction extends Action {
 	
 	public HomeAction(Model model) {
 		twitter = model.getTwitter();
-		flickr = model.getFlickr();
+		//flickr = model.getFlickr();
 	}
 
 	public String getName() { return "home.do"; }
@@ -37,8 +37,8 @@ public class HomeAction extends Action {
 		try {
 			//twitter.fetchTweetsExample();
 			timeline = twitter.getTimeLine(twitterToken);
-			flickr.fetchPlacesExample();
-		} catch (IOException | XPathExpressionException | ParserConfigurationException | SAXException e) {
+			//flickr.fetchPlacesExample();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("timeline", timeline);

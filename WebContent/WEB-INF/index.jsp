@@ -7,7 +7,7 @@
 			
 			<c:forEach var="photo" items="${photos}">
 			<c:choose>
-			<c:when test="${fn:length(photo.getValue()) mod 3 eq 0}" >
+			<c:when test="${fn:length(photo.getValue()) mod 2 eq 0}" >
 			<div class="grid_6">
 				<div class="p1_box left cl3 pos1">
 					<div class="type"></div>
