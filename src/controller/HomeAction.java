@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.scribe.model.Token;
 import org.xml.sax.SAXException;
 
+import databeans.TweetBean;
 import model.Flickr;
 import model.FlickrPublic;
 import model.Model;
@@ -33,15 +34,16 @@ public class HomeAction extends Action {
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		twitterToken = (Token) session.getAttribute("twitterAccessToken");
-		ArrayList<String> timeline = new ArrayList<String>();
+		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
 		try {
-			//twitter.fetchTweetsExample();
+
 			timeline = twitter.getTimeLine(twitterToken);
-			//flickr.fetchPlacesExample();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("timeline", timeline);
+		
 		return "home.jsp";
 	}
 }
