@@ -57,8 +57,8 @@
 							<li><a href="#">About</a></li>
 							<li><a href="#">Gallery</a></li>
 							<li class="current"><a href="index.jsp">Home</a></li>
-							<li><a href="#">Video</a></li>
-							<li><a href="#">Contacts</a></li>
+							<li><a href="flickrLogin.do">Flickr Login</a></li>
+							<li><a href="twitterLogin.do">Twitter Login</a></li>
 						</ul>
 					</nav>
 					<div class="clear"></div>

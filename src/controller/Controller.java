@@ -17,6 +17,7 @@ public class Controller extends HttpServlet {
 		Model model = new Model(getServletConfig());
 
 		Action.add(new IndexAction(model));
+		Action.add(new HomeAction(model));
 		Action.add(new Login(model));
 		Action.add(new TwitterLogin(model));
 		Action.add(new FlickrLogin(model));

@@ -61,11 +61,11 @@ public class FlickrCallback extends Action{
 			//twitter.sendTwitter(accessToken, TwitterEncoder.encode("This is Tian Zheng testing twitter login using Yahaa"));
 			//System.out.println(twitter.getTimeLine(accessToken));
 			
-			session.setAttribute("accessToken", accessToken);
+			session.setAttribute("flickrAccessToken", accessToken);
 
 			
 			// return (String) session.getAttribute("curPage");
-			return "index.do";
+			return "home.do";
 		} catch (Exception e) {
 			errors.add(e.getMessage());
 			System.out.println(e);

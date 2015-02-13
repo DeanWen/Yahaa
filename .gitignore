@@ -50,3 +50,7 @@ local.properties
 .texlipse
 /bin/
 
+
+*.class
+
+*.class

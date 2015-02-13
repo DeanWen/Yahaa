@@ -10,8 +10,7 @@
 							<div class="clear"></div>
 						</div>
 						<div class="copy">
-							&copy; <span id="copyright-year"></span> | <a href="#">Privacy Policy</a> <br>
-							Website designed by <a href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
+							&copy; <span id="copyright-year"></span> | <a href="#">Team 14 Infinity</a> <br>
 						</div>
 					</div>
 				</div>

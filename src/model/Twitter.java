@@ -1,8 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,7 +34,7 @@ public class Twitter {
     	service = new ServiceBuilder().provider(TwitterApi.SSL.class)
 				.apiKey(twitterKey)
 				.apiSecret(twitterSecret)
-				.callback("http://localhost:8080/Task8Test/twitterCallback.do")
+				.callback("http://localhost:8080/Yahaa/twitterCallback.do")
 				.build();
     }  
 	
