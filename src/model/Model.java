@@ -24,14 +24,17 @@ public class Model {
 		twitterSecret = config.getInitParameter("TwitterSecret");
 		flickrKey = config.getInitParameter("FlickrKey");
 		flickrSecret = config.getInitParameter("FlickrSecret");
-
+		
 		twitter = new Twitter();
 		flickrPublic = new FlickrPublic(flickrKey);
 
 		try {
 			String jdbcDriver = config.getInitParameter("jdbcDriverName");
 			String jdbcURL = config.getInitParameter("jdbcURL");
-			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
+			String db_username = config.getInitParameter("db_username");
+			String db_password = config.getInitParameter("db_password"); 
+			
+			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL, db_username, db_password);
 			userDAO = new UserDAO(pool, "User");
 		} catch (DAOException e) {
 			throw new ServletException(e);

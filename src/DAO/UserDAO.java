@@ -119,7 +119,7 @@ public class UserDAO extends GenericDAO<UserBean> {
 				throw new RollbackException("Flickr account already exists");
 			}
 			UserBean user = new UserBean();
-			user.setTwitterId(flickrId);
+			user.setFlickrId(flickrId);
 			create(user);
 			Transaction.commit();
 		} finally {
