@@ -12,7 +12,7 @@
 				<div class="p1_box left cl3 pos1">
 					<div class="type"></div>
 					<img src="${photo.getKey() }" alt="">
-					<a href="index-3.html" class="bot">"${photo.getValue()}"<span><strong class="fa-angle-right fa"></strong></span></a>
+					<a class="bot">"${photo.getValue()}"<span><strong class="fa-angle-right fa"></strong></span></a>
 				</div>
 			</div>
 			</c:when>

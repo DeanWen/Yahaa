@@ -20,7 +20,8 @@ public class UserBean implements Serializable {
 	private String screen_Name = null;
 	private int likeGiven;
 	private int likeReceived;
-
+	private String password = null;
+	
 	public int getLikeGiven() {
 		return likeGiven;
 	}
@@ -83,5 +84,13 @@ public class UserBean implements Serializable {
 
 	public void setScreen_Name(String screen_Name) {
 		this.screen_Name = screen_Name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

@@ -12,9 +12,13 @@
 
 						<div class="p1_box left cl2">
 							<blockquote>${tweet.getContent()}</blockquote>
+<<<<<<< HEAD
 							<form action="likeTweet.do" method="POST" id="likeTweet_form">
 							<input type="hidden" name="id" value="${tweet.getId()}"/>
 							<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="bot"> <span>${tweet.getLikeCount()}
+=======
+							<a class="bot"> <span>${tweet.getLikeCount()}
+>>>>>>> FETCH_HEAD
 									<br>Likes
 							</span></a>
 							</form>
@@ -24,9 +28,13 @@
 					<c:otherwise>
 						<div class="p1_box left cl5">
 							<blockquote>${tweet.getContent()}</blockquote>
+<<<<<<< HEAD
 							<form action="likeTweet.do" method="POST" id="likeTweet_form">
 							<input type="hidden" name="id" value="${tweet.getId()}"/>
 							<a href="javascript:{}" onclick="document.getElementById('my_form').submit(); return false;" class="bot"> <span>${tweet.getLikeCount()}
+=======
+							<a class="bot"> <span>${tweet.getLikeCount()}
+>>>>>>> FETCH_HEAD
 									<br>Likes
 							</span></a>
 							</form>
@@ -40,7 +48,7 @@
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
                     <img src="${photo.getUrl() }" alt="">
-                    <a href="index-3.html" class="bot">"${photo.getTitle()}"<span><strong class="fa-angle-right fa"></strong></span></a>
+                    <a class="bot">"${photo.getTitle()}"<span><strong class="fa-angle-right fa"></strong></span></a>
                 </div>
             </c:forEach>
         </div>

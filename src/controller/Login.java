@@ -30,14 +30,8 @@ public class Login extends Action {
 //			if (errors.size() != 0) {
 //				return "login.do";
 //			}
-			
-			
-			Twitter twitter = Twitter.getTwitter();
-			Token requestToken = twitter.getRequestToken();
-			session.setAttribute("requestToken", requestToken);
-			
-			String url = twitter.getURL(requestToken);
-			return url;
+
+			return "login.jsp";
 		} catch (Exception e) {
 			errors.add(e.getMessage());
 			System.out.println(e);

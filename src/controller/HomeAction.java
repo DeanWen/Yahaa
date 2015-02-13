@@ -37,6 +37,11 @@ public class HomeAction extends Action {
 		HttpSession session = request.getSession();
 		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 		flickrToken = (Token) session.getAttribute("flickrAccessToken");
+<<<<<<< HEAD
+=======
+		
+		flickr.addFavourites(flickrToken, "16333373119");
+>>>>>>> FETCH_HEAD
 		
 		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
 		try {

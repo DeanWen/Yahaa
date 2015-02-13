@@ -60,7 +60,6 @@ public class FlickrCallback extends Action{
 			//System.out.println(twitter.getTimeLine(accessToken));
 			
 			session.setAttribute("flickrAccessToken", accessToken);
-
 			
 			// return (String) session.getAttribute("curPage");
 			return "home.do";
