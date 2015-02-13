@@ -18,7 +18,7 @@
 					</tr>
 					<tr>
 						<td class="center" colspan="2"><input id="login"
-							type="submit" name="action" value="Login" /></td>
+							type="submit" name="action" value="Done" /></td>
 					</tr>
 				</tbody>
 			</table>
