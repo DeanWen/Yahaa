@@ -10,7 +10,6 @@ import org.mybeans.form.FormBeanFactory;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 
-import model.TwitterEncoder;
 import formbeans.TwitterCallbackForm;
 import model.Model;
 import model.Twitter;

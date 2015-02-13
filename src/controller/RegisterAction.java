@@ -3,7 +3,6 @@ package controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import model.Flickr;
 import model.Model;
 import model.Twitter;
 
@@ -15,14 +14,13 @@ import databeans.UserBean;
 public class RegisterAction extends Action {
 
 	private Twitter twitter;
-	private Flickr flickr;
 	private Token twitterToken;
 	private Token flickrToken;
 	private UserDAO userDAO;
 	
 	public RegisterAction(Model model) {
 		twitter = model.getTwitter();
-		flickr = model.getFlickr();
+		model.getFlickr();
 		userDAO = model.getUserDAO();
 	}
 

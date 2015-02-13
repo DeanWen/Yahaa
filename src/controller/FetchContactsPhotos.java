@@ -1,17 +1,9 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-
 import org.scribe.model.Token;
-import org.xml.sax.SAXException;
-
 import databeans.FlickrBean;
 import model.Flickr;
 import model.Model;

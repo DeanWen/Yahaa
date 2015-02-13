@@ -1,8 +1,6 @@
 package databeans;
 
 public class FlickrBean {
-	private static final long serialVersionUID = 1L;
-
 	private String id;
 	private String url;
 	private int likeCount;

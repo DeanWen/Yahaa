@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.scribe.model.Token;
 
 import model.Flickr;
-import model.Twitter;
 import model.Model;
 
 public class FlickrLogin extends Action {
@@ -27,12 +26,7 @@ public class FlickrLogin extends Action {
 		request.setAttribute("errors", errors);
 		HttpSession session = request.getSession();
 		
-		try {
-//			if (errors.size() != 0) {
-//				return "login.do";
-//			}
-			
-			
+		try {			
 			Flickr flickr = new Flickr();
 			Token requestToken = flickr.getRequestToken();
 			session.setAttribute("requestToken", requestToken);
