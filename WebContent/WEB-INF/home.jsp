@@ -12,7 +12,7 @@
 
 						<div class="p1_box left cl2">
 							<blockquote>${tweet.getContent()}</blockquote>
-							<a href="#" class="bot"> <span>${tweet.getLikeCount()}
+							<a class="bot"> <span>${tweet.getLikeCount()}
 									<br>Likes
 							</span></a>
 						</div>
@@ -21,7 +21,7 @@
 					<c:otherwise>
 						<div class="p1_box left cl5">
 							<blockquote>${tweet.getContent()}</blockquote>
-							<a href="#" class="bot"> <span>${tweet.getLikeCount()}
+							<a class="bot"> <span>${tweet.getLikeCount()}
 									<br>Likes
 							</span></a>
 						</div>
@@ -34,7 +34,7 @@
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
                     <img src="${photo.getUrl() }" alt="">
-                    <a href="index-3.html" class="bot">"${photo.getTitle()}"<span><strong class="fa-angle-right fa"></strong></span></a>
+                    <a class="bot">"${photo.getTitle()}"<span><strong class="fa-angle-right fa"></strong></span></a>
                 </div>
             </c:forEach>
         </div>
