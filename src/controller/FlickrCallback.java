@@ -65,7 +65,7 @@ public class FlickrCallback extends Action{
 
 			
 			// return (String) session.getAttribute("curPage");
-			return "fetchContactsPhotos.do";
+			return "home.do";
 		} catch (Exception e) {
 			errors.add(e.getMessage());
 			System.out.println(e);

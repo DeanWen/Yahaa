@@ -15,13 +15,18 @@ import java.util.HashMap;
 import javax.net.ssl.HttpsURLConnection;
 
 import java.util.ArrayList;
-
 import java.util.ArrayList;
-
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
@@ -31,6 +36,10 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class Flickr extends HttpServlet{
 	private static final String API_KEY = "dd6594393674176f44ec5daeefdf86ac";
