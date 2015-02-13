@@ -198,11 +198,12 @@ public class Flickr extends HttpServlet{
 		System.out.println("URL: " + query.toString());
 		System.out.println("Access Token" +  accessToken);
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
-		Response response = request.send();
+		
 		try {
 			service.signRequest(accessToken, request);
 		} catch(Exception e) {
 			System.out.print("ERROR: " + e.getMessage());
 		}
+		Response response = request.send();
 	}
 }
