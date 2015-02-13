@@ -3,16 +3,15 @@ package databeans;
 public class FlickrBean {
 	private static final long serialVersionUID = 1L;
 
-	private long id;
+	private String id;
 	private String url;
-	private long likeCount;
-	private String total; //like count
+	private int likeCount;
 	private String title;
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -32,17 +31,10 @@ public class FlickrBean {
 		this.title = title;
 	}
 	
-	public long getLikeCount() {
+	public int getLikeCount() {
 		return likeCount;
 	}
-	public void setLikeCount(long likeCount) {
+	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
-	}
-	
-	public String getTotal() {
-		return total;
-	}
-	public void setTotal(String total) {
-		this.total = total;
 	}
 }

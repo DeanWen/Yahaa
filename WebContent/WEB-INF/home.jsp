@@ -40,7 +40,9 @@
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
                     <img src="${photo.getUrl() }" alt="">
-                    <a class="bot">"${photo.getTitle()}"<span><strong class="fa-angle-right fa"></strong></span></a>
+                    <a class="bot">"${photo.getTitle()}"<span><br>${photo.getLikeCount()}
+                    	<br>Likes
+                    </span></a>
                 </div>
             </c:forEach>
         </div>

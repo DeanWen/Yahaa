@@ -75,7 +75,7 @@ public class Flickr extends HttpServlet{
 		return accessToken;
 	}
 	
-	public String getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
+	public int getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		
 		HttpURLConnection connection = null;
 		String query = "flickr.photos.getFavorites";
@@ -119,8 +119,9 @@ public class Flickr extends HttpServlet{
 		Node node =nodeList.item(0);
 			
 		String total = (String) xpath.evaluate("@total", node, XPathConstants.STRING);
-		System.out.println(total);
-		return total;				
+		int likeCount = Integer.parseInt(total);
+//		System.out.println(likeCount);
+		return likeCount;				
 	}
 
 	
@@ -170,6 +171,7 @@ public class Flickr extends HttpServlet{
 			String title = (String) xpath.evaluate("@title", node, XPathConstants.STRING);
 			
 			FlickrBean tempBean = new FlickrBean();
+			tempBean.setId(id);
 			tempBean.setTitle(title);
 			tempBean.setUrl(flickrurl);
 			

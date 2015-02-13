@@ -55,7 +55,32 @@ public class HomeAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		for (int i = 0; i < photos.size(); i++) {
+			String id = photos.get(i).getId();
+			System.out.println(id);
+			int likeCount = 0;
+			try {
+				likeCount = flickr.getFavoriteTotal(id, flickrToken);
+			} catch (XPathExpressionException | IOException
+					| ParserConfigurationException | SAXException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			photos.get(i).setLikeCount(likeCount);
+			System.out.println(likeCount);
+		}
+		
+		int test = 0;
+		try {
+			test = flickr.getFavoriteTotal("16333373119", flickrToken);
+		} catch (XPathExpressionException | IOException
+				| ParserConfigurationException | SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(test);
+		
 		request.setAttribute("photos", photos);
 		request.setAttribute("timeline", timeline);
 		
