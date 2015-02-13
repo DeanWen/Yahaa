@@ -41,24 +41,16 @@
                 <div class="p1_box right cl3 pos1">
                     <div class="type"></div>
                     <img src="${photo.getUrl() }" alt="">
-<<<<<<< HEAD
-                    <a class="bot">"${photo.getTitle()}"<span>
-                    <i class = "icon-heart"></i>
-                    <h2>Favorite</h2>
-                    </span>
-               
-                   
-                    
-                   </a>
-=======
+
                     <form action="likeFlickr.do" method="POST" name="likeFlickr_form">
 							<input type="hidden" name="id" value="${photo.getId()}"/>
-                    <a class="bot">"${photo.getTitle()}"<span><br>${photo.getLikeCount()}
-                    	<br>Likes
+                     <a class="bot">"${photo.getTitle()}"<span>
+                    <i class = "icon-heart"></i>
+                    <h2>Favorite</h2>
                     </span></a>
                     <input type="submit" name="button" value ="Submit"/>
 					</form>
->>>>>>> fd8beea50f198bb6aae8747c263a446b537a9a06
+
                 </div>
             </c:forEach>
         </div>
