@@ -49,6 +49,8 @@ public class LikeTweetAction extends Action {
 			form = likeFormFactory.create(request);
 			tweetId = form.getIdAsLong();
 			twitter.like(twitterToken, tweetId);
+			twitter.getTag(twitterToken, tweetId);
+			twitter.getTime();
 		} catch (FormBeanException e) {
 			e.printStackTrace();
 		}

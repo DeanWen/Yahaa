@@ -1,7 +1,10 @@
 package model;
 
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import org.scribe.builder.ServiceBuilder;
@@ -126,7 +129,33 @@ public class Twitter {
 		service.signRequest(accessToken, request);
 		
 		Response response = request.send();
-
+	}
+	
+	public void getTag(Token accessToken, long tweetId) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/statuses/show/" + tweetId + ".json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+		service.signRequest(accessToken, request);
+		
+		Response response = request.send();
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		JSONObject entities = (JSONObject) object.get("entities");
+		JSONArray hashtags = (JSONArray) entities.get("hashtags");
+		String tag = "Yahaa";
+		if (hashtags.size() != 0) {
+			JSONObject firstTag = (JSONObject) hashtags.get(0);
+			tag = (String) firstTag.get("text");	
+		}		
+		System.out.println(tag);
+	}
+	
+	public void getTime() {
+		DateFormat dateFormat = new SimpleDateFormat("HH");
+		Date current = new Date();
+		String time = dateFormat.format(current);
+		System.out.println(time);
 	}
 	
 	public void sendTwitter(Token accessToken, String text)
