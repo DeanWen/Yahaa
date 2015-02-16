@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -201,7 +202,7 @@ a:hover.slidesjs-stop {
 			<div class="container_12">
 				<div class="grid_12">
 					<h1>
-						<a href="index.jsp"> <img src="images/logo.gif"
+						<a href="index.do"> <img src="images/logo.gif"
 							alt="Your Happy Family">
 						</a>
 					</h1>
@@ -214,8 +215,15 @@ a:hover.slidesjs-stop {
 			<div class="grid_12">
 				<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 					<ul class="sf-menu">
+					<c:choose>
+						<c:when test = "${not empty user}">
+						<li class="current"><a href="home.do">Home</a></li>
+						</c:when>
+						<c:otherwise>
 						<li><a href="login.do">Login</a></li>
-						<li class="current"><a href="index.do">Home</a></li>
+						<li class="current"><a href="index.do">Index</a></li>
+						</c:otherwise>
+					</c:choose>
 						<li><a href="logout.do">Logout</a></li>
 
 					</ul>
