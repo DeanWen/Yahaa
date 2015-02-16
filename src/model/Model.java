@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import org.genericdao.ConnectionPool;
 import org.genericdao.DAOException;
 
+import DAO.LikeDAO;
+import DAO.TagDAO;
 import DAO.UserDAO;
 
 public class Model {
@@ -19,6 +21,9 @@ public class Model {
 	private final FlickrPublic flickrPublic;
 
 	private UserDAO userDAO;
+	private LikeDAO likeDAO;
+	private TagDAO tagDAO;
+	
 
 	public Model(ServletConfig config) throws ServletException {
 		twitterKey = config.getInitParameter("TwitterKey");
@@ -38,6 +43,8 @@ public class Model {
 			
 			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL, db_username, db_password);
 			userDAO = new UserDAO(pool, "User");
+			tagDAO = new TagDAO(pool, "TagStat");
+			likeDAO = new LikeDAO(pool, "LikeStat");
 		} catch (DAOException e) {
 			throw new ServletException(e);
 		}
@@ -57,5 +64,21 @@ public class Model {
 	
 	public Flickr getFlickr() {
 		return flickr;
+	}
+
+	public LikeDAO getLikeDAO() {
+		return likeDAO;
+	}
+
+	public void setLikeDAO(LikeDAO likeDAO) {
+		this.likeDAO = likeDAO;
+	}
+
+	public TagDAO getTagDAO() {
+		return tagDAO;
+	}
+
+	public void setTagDAO(TagDAO tagDAO) {
+		this.tagDAO = tagDAO;
 	}
 }
