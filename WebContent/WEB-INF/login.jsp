@@ -34,7 +34,7 @@
 					<button type="submit" style="border: 0; background: transparent">
 						<img src="images/twitter.png" width="320" height="60" alt="submit" />
 					</button>
-					<!-- 					<input id="login" type="submit" name="action" value="Twitter Login" /> -->
+<!-- 					<input id="login" type="submit" name="action" value="Twitter Login" /> -->
 				</form>
 				<form action="flickrLogin.do" method="POST">
 					<button type="submit" style="border: 0; background: transparent">
