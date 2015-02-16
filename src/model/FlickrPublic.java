@@ -97,7 +97,7 @@ public class FlickrPublic {
 	}
 	
 	public HashMap<String, String> fetchPhotoExample () throws XPathExpressionException, IOException, XMLStreamException, ParserConfigurationException, SAXException {
-		return fetchPhotos("Pittsburgh", 10);
+		return fetchPhotos("cancun", 10);
 	}
 	
 }

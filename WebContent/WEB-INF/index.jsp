@@ -7,10 +7,9 @@
   <!-- The container is used to define the width of the slideshow -->
   <div class="container">
     <div id="slides">
-      <img src="images/example-slide-1.jpg" >
-      <img src="images/example-slide-2.jpg" >
-      <img src="images/example-slide-3.jpg" >
-      <img src="images/example-slide-4.jpg" >
+    <c:forEach var="photo" items="${photos}">
+      <img src="${photo.getKey()}"  >
+	</c:forEach>
     </div>
   </div>
   <!-- End SlidesJS Required: Start Slides -->
