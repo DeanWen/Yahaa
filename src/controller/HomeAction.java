@@ -45,7 +45,7 @@ public class HomeAction extends Action {
 		twitterToken = new Token(tToken, tSecret);
 		flickrToken = new Token(fToken, fSecret);
 		
-//		twitterToken = (Token) session.getAttribute("twitterAccessToken");
+	//	twitterToken = (Token) session.getAttribute("twitterAccessToken");
 //		flickrToken = (Token) session.getAttribute("flickrAccessToken");
 		System.out.println("Hahahaha");
 		System.out.println("flickr token: " + flickrToken);

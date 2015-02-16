@@ -25,7 +25,7 @@ public class Model {
 		twitterSecret = config.getInitParameter("TwitterSecret");
 		flickrKey = config.getInitParameter("FlickrKey");
 		flickrSecret = config.getInitParameter("FlickrSecret");
-		
+		System.out.println(flickrKey);
 		twitter = new Twitter();
 		flickr = new Flickr();
 		flickrPublic = new FlickrPublic(flickrKey);

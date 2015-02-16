@@ -136,7 +136,7 @@ public class Flickr extends HttpServlet{
 		service.signRequest(accessToken, request);
 		Response response = request.send();
 		System.out.println("URL: " + address);
-		
+		/*
 		String filename = "photos.xml";
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(response.getStream()));
@@ -148,13 +148,13 @@ public class Flickr extends HttpServlet{
 		}
 		br.close();
 		bw.close();
-		
+		*/
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setValidating(false);
 		dbf.setNamespaceAware(true);
 		
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(new FileInputStream(new File("photos.xml")));
+		Document doc = db.parse(/*new FileInputStream(new File("photos.xml"))*/ response.getStream());
 		
 		XPathFactory factory = XPathFactory.newInstance();
 		XPath xpath = factory.newXPath();

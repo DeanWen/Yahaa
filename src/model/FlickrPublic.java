@@ -47,7 +47,7 @@ public class FlickrPublic {
 				+ "&api_key=" + flickrKey + "&per_page=" + count
 				+ "&text=" + keyword
 				+ "&tag_mode=all&content_type=1&sort=relevance");
-		
+		System.out.println(url);
 		connection = (HttpsURLConnection) url.openConnection();
 		connection.setDoOutput(true);
 		connection.setDoInput(true);
@@ -55,7 +55,7 @@ public class FlickrPublic {
 		connection.setUseCaches(false);
 
 		//writeRequest(connection, "");
-		
+		/*
 		String filename = "test.xml";
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -66,13 +66,13 @@ public class FlickrPublic {
 		}
 		br.close();
 		bw.close();
-		
+		*/
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setValidating(false);
         dbf.setNamespaceAware(true);
         
         DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(new FileInputStream(new File("test.xml")));
+        Document doc = db.parse(/*new FileInputStream(new File("test.xml"))*/ connection.getInputStream());
  
         XPathFactory factory = XPathFactory.newInstance();
         XPath xpath = factory.newXPath();
