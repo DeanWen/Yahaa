@@ -13,10 +13,9 @@ import org.scribe.model.Verb;
 import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
-import com.google.gson.Gson;
-
 import databeans.TweetBean;
 import databeans.UserBean;
+import DAO.UserDAO;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -125,6 +124,7 @@ public class Twitter {
 
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		service.signRequest(accessToken, request);
+		
 		Response response = request.send();
 
 	}
