@@ -111,19 +111,47 @@ public class Twitter {
 			String text = (String) next.get("text");
 			Long count = (Long) next.get("favorite_count");
 			Long id = (Long) next.get("id");
+			//boolean favorite = (boolean) next.get("favorited");
 			TweetBean tempBean = new TweetBean();
 			tempBean.setContent(text);
 			tempBean.setLikeCount(count);
 			tempBean.setId(id);
+			//tempBean.setFavorited(favorite);
 			result.add(tempBean);
 		}
 		
 		return result;
 	}
 	
+	public boolean isLiked(Token accessToken, long tweetId) {
+		boolean liked = false;
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/statuses/show/" + tweetId + ".json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+		service.signRequest(accessToken, request);
+		
+		Response response = request.send();
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		boolean favorited = (boolean) object.get("favorited");
+		if (favorited) liked = true;
+		
+		return liked;
+	}
+	
 	public void like(Token accessToken, long tweetId) {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/favorites/create.json?id=" + tweetId);
+
+		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
+		service.signRequest(accessToken, request);
+		
+		Response response = request.send();
+	}
+	
+	public void unLike(Token accessToken, long tweetId) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/favorites/destroy.json?id=" + tweetId);
 
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		service.signRequest(accessToken, request);
