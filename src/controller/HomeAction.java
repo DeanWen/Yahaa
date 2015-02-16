@@ -80,14 +80,6 @@ public class HomeAction extends Action {
 		}
 */
 		
-		try {
-			flickr.getFlickrTag("16333373119", flickrToken);
-		} catch (XPathExpressionException | IOException
-				| ParserConfigurationException | SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		request.setAttribute("photos", photos);
 		request.setAttribute("timeline", timeline);
 		

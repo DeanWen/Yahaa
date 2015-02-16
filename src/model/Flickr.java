@@ -75,8 +75,7 @@ public class Flickr extends HttpServlet{
 		return accessToken;
 	}
 	
-public ArrayList<String> getFlickrTag(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
-		ArrayList<String> result = new ArrayList<String>();
+	public boolean isFavorite(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		HttpURLConnection connection = null;
 		String query = "flickr.photos.getInfo";
 		URL url = new URL(
@@ -113,19 +112,65 @@ public ArrayList<String> getFlickrTag(String id, Token accessToken) throws IOExc
 		XPathFactory factory = XPathFactory.newInstance();
 		XPath xpath = factory.newXPath();
 		
-		NodeList nodeList = (NodeList) xpath.evaluate("//tags/tag", doc, XPathConstants.NODESET);
-		
-		for (int i = 0; i < nodeList.getLength(); i++) {
-			Node node =nodeList.item(i);
-			
-			String tag = (String) xpath.evaluate("@raw", node, XPathConstants.STRING);
-			
-			FlickrBean tempBean = new FlickrBean();
-			
-			result.add(tag);
+		Node node = (Node) xpath.evaluate("//photo", doc, XPathConstants.NODE);
+		String isFav = "";
+
+		if (node != null) {				
+			isFav = (String) xpath.evaluate("@isfavorite", node, XPathConstants.STRING);
 		}
-		System.out.println(result);
-		return result;				
+		if (isFav.equals("0")) {
+			return false;
+		}
+		else return true;				
+	}
+	
+	public String getFlickrTag(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
+		HttpURLConnection connection = null;
+		String query = "flickr.photos.getInfo";
+		URL url = new URL(
+				"http://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
+				+ "&photo_id=" + id
+		);
+		
+		String address = "https://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
+				+ "&photo_id=" + id;
+		OAuthRequest request = new OAuthRequest(Verb.GET, address);
+		
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+		
+		String filename = "tag.xml";
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(response.getStream()));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
+		
+		String nextline;
+		while ((nextline = br.readLine()) != null) {
+			bw.write(nextline);// fastest the way to read and write
+		}
+		br.close();
+		bw.close();
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setValidating(false);
+		dbf.setNamespaceAware(true);
+		
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.parse(new FileInputStream(new File("tag.xml")));
+		
+		XPathFactory factory = XPathFactory.newInstance();
+		XPath xpath = factory.newXPath();
+		
+		Node node = (Node) xpath.evaluate("//tags/tag", doc, XPathConstants.NODE);
+		String tag = "";
+
+		if (node != null) {				
+			tag = (String) xpath.evaluate("@raw", node, XPathConstants.STRING);
+		}
+		if (tag.length() == 0) {
+			tag = "Yahaa";
+		}
+		return tag;				
 	}
 	
 	public int getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
@@ -248,6 +293,24 @@ public ArrayList<String> getFlickrTag(String id, Token accessToken) throws IOExc
 		System.out.println("Access Token" +  accessToken);
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		
+		try {
+			service.signRequest(accessToken, request);
+		} catch(Exception e) {
+			System.out.print("ERROR: " + e.getMessage());
+		}
+		Response response = request.send();
+	}
+	
+	public void removeFavourites(Token accessToken, String photo_id) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.flickr.com/services/rest/?method=");
+		query.append("flickr.favorites.remove");
+		query.append("&api_key=");
+		query.append(API_KEY);
+		query.append("&photo_id=");
+		query.append(photo_id);
+		
+		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());		
 		try {
 			service.signRequest(accessToken, request);
 		} catch(Exception e) {
