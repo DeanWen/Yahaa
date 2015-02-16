@@ -81,10 +81,6 @@ public class Flickr extends HttpServlet{
 	public boolean isFavorite(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		HttpURLConnection connection = null;
 		String query = "flickr.photos.getInfo";
-		URL url = new URL(
-				"http://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
-				+ "&photo_id=" + id
-		);
 		
 		String address = "https://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
 				+ "&photo_id=" + id;
@@ -130,10 +126,6 @@ public class Flickr extends HttpServlet{
 	public String getFlickrTag(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		HttpURLConnection connection = null;
 		String query = "flickr.photos.getInfo";
-		URL url = new URL(
-				"http://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
-				+ "&photo_id=" + id
-		);
 		
 		String address = "https://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
 				+ "&photo_id=" + id;
@@ -141,25 +133,13 @@ public class Flickr extends HttpServlet{
 		
 		service.signRequest(accessToken, request);
 		Response response = request.send();
-		
-		String filename = "tag.xml";
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(response.getStream()));
-		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
-		
-		String nextline;
-		while ((nextline = br.readLine()) != null) {
-			bw.write(nextline);// fastest the way to read and write
-		}
-		br.close();
-		bw.close();
-		
+
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setValidating(false);
 		dbf.setNamespaceAware(true);
 		
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(new FileInputStream(new File("tag.xml")));
+		Document doc = db.parse(response.getStream());
 		
 		XPathFactory factory = XPathFactory.newInstance();
 		XPath xpath = factory.newXPath();
@@ -233,25 +213,13 @@ public class Flickr extends HttpServlet{
 		
 		service.signRequest(accessToken, request);
 		Response response = request.send();
-		/*
-		String filename = "photos.xml";
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(response.getStream()));
-		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
-		
-		String nextline;
-		while ((nextline = br.readLine()) != null) {
-			bw.write(nextline);// fastest the way to read and write
-		}
-		br.close();
-		bw.close();
-		*/
+
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setValidating(false);
 		dbf.setNamespaceAware(true);
 		
 		DocumentBuilder db = dbf.newDocumentBuilder();
-		Document doc = db.parse(/*new FileInputStream(new File("photos.xml"))*/ response.getStream());
+		Document doc = db.parse(response.getStream());
 		
 		XPathFactory factory = XPathFactory.newInstance();
 		XPath xpath = factory.newXPath();
