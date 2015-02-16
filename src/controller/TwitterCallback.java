@@ -11,6 +11,7 @@ import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 
 import formbeans.TwitterCallbackForm;
+import model.Flickr;
 import model.Model;
 import model.Twitter;
 
@@ -36,6 +37,7 @@ public class TwitterCallback extends Action {
 			TwitterCallbackForm form = formBeanFactory.create(request);
 
 			Twitter twitter = Twitter.getTwitter();
+			Flickr flickr = Flickr.getFlickr();
 			Token requestToken = (Token) session.getAttribute("requestToken");
 
 			if (!requestToken.getToken().equals(form.getOauth_token())) {
@@ -51,7 +53,6 @@ public class TwitterCallback extends Action {
 			
 			session.setAttribute("twitterAccessToken", accessToken);
 
-			
 			// return (String) session.getAttribute("curPage");
 			return "register.do";
 		} catch (Exception e) {
