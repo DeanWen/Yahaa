@@ -47,7 +47,6 @@ public class FlickrPublic {
 				+ "&api_key=" + flickrKey + "&per_page=" + count
 				+ "&text=" + keyword
 				+ "&tag_mode=all&content_type=1&sort=relevance");
-		System.out.println(url);
 		connection = (HttpsURLConnection) url.openConnection();
 		connection.setDoOutput(true);
 		connection.setDoInput(true);
