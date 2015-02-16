@@ -23,13 +23,6 @@ a[href^="tel:"] {
 	font-smoothing:antialiased; 
 	}
 
-
-
-
-
-
-
-
 body {
 	position: relative;
 	min-width: 1080px;
@@ -62,13 +55,21 @@ address {
 	font-style: normal;
 }
 
-
-
 input {
 	border-radius: 0 !important;
 	outline: none !important;
 }
 
+.heart { 
+    background:none!important;
+     border:none; 
+     padding:0!important;
+    
+    /*optional*/
+    font-family:arial,sans-serif; /*input has OS specific font-family*/
+     color:#069;
+     cursor:pointer;
+}
 
 img {
 	max-width: 100%;
