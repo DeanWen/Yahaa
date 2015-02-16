@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
 import javax.xml.parsers.DocumentBuilder;
@@ -173,8 +176,7 @@ public class Flickr extends HttpServlet{
 		return tag;				
 	}
 	
-	public int getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
-		
+	public int getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {		
 		HttpURLConnection connection = null;
 		String query = "flickr.photos.getFavorites";
 		URL url = new URL(
@@ -231,7 +233,6 @@ public class Flickr extends HttpServlet{
 		
 		service.signRequest(accessToken, request);
 		Response response = request.send();
-		System.out.println("URL: " + address);
 		/*
 		String filename = "photos.xml";
 		
@@ -317,5 +318,12 @@ public class Flickr extends HttpServlet{
 			System.out.print("ERROR: " + e.getMessage());
 		}
 		Response response = request.send();
+	}
+	
+	public String getTime() {
+		DateFormat dateFormat = new SimpleDateFormat("HH");
+		Date current = new Date();
+		String time = dateFormat.format(current);
+		return time;
 	}
 }
