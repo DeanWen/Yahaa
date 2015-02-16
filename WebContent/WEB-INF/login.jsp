@@ -31,10 +31,16 @@
 			<div class="grid_6">
 				<div class=" right cl2">
 				<form action="twitterLogin.do" method="POST">
-					<input id="login" type="submit" name="action" value="Twitter Login" />
+					<button type="submit" style="border: 0; background: transparent">
+						<img src="images/twitter.png" width="320" height="60" alt="submit" />
+					</button>
+					<!-- 					<input id="login" type="submit" name="action" value="Twitter Login" /> -->
 				</form>
 				<form action="flickrLogin.do" method="POST">
-					<input id="login" type="submit" name="action" value="Flickr Login" />
+					<button type="submit" style="border: 0; background: transparent">
+						<img src="images/flickr.png" width="320" height="60" alt="submit" />
+					</button>
+<!-- 					<input id="login" type="submit" name="action" value="Flickr Login" /> -->
 				</form>
 				</div>
 			</div>
