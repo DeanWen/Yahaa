@@ -47,8 +47,6 @@ public class HomeAction extends Action {
 		
 	//	twitterToken = (Token) session.getAttribute("twitterAccessToken");
 //		flickrToken = (Token) session.getAttribute("flickrAccessToken");
-		System.out.println("Hahahaha");
-		System.out.println("flickr token: " + flickrToken);
 
 		
 		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
@@ -66,7 +64,7 @@ public class HomeAction extends Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+/*		
 		for (int i = 0; i < photos.size(); i++) {
 			String id = photos.get(i).getId();
 			System.out.println(id);
@@ -79,19 +77,16 @@ public class HomeAction extends Action {
 				e.printStackTrace();
 			}
 			photos.get(i).setLikeCount(likeCount);
-			System.out.println(likeCount);
 		}
+*/
 		
-		int test = 0;
 		try {
-			test = flickr.getFavoriteTotal("16333373119", flickrToken);
+			flickr.getFlickrTag("16333373119", flickrToken);
 		} catch (XPathExpressionException | IOException
 				| ParserConfigurationException | SAXException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(test);
-		flickr.addFavourites(flickrToken, "16333373119");
 		
 		request.setAttribute("photos", photos);
 		request.setAttribute("timeline", timeline);

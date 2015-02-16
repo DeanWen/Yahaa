@@ -75,6 +75,59 @@ public class Flickr extends HttpServlet{
 		return accessToken;
 	}
 	
+public ArrayList<String> getFlickrTag(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
+		ArrayList<String> result = new ArrayList<String>();
+		HttpURLConnection connection = null;
+		String query = "flickr.photos.getInfo";
+		URL url = new URL(
+				"http://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
+				+ "&photo_id=" + id
+		);
+		
+		String address = "https://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY 
+				+ "&photo_id=" + id;
+		OAuthRequest request = new OAuthRequest(Verb.GET, address);
+		
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+		
+		String filename = "tag.xml";
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(response.getStream()));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(new File(filename)));
+		
+		String nextline;
+		while ((nextline = br.readLine()) != null) {
+			bw.write(nextline);// fastest the way to read and write
+		}
+		br.close();
+		bw.close();
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		dbf.setValidating(false);
+		dbf.setNamespaceAware(true);
+		
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		Document doc = db.parse(new FileInputStream(new File("tag.xml")));
+		
+		XPathFactory factory = XPathFactory.newInstance();
+		XPath xpath = factory.newXPath();
+		
+		NodeList nodeList = (NodeList) xpath.evaluate("//tags/tag", doc, XPathConstants.NODESET);
+		
+		for (int i = 0; i < nodeList.getLength(); i++) {
+			Node node =nodeList.item(i);
+			
+			String tag = (String) xpath.evaluate("@raw", node, XPathConstants.STRING);
+			
+			FlickrBean tempBean = new FlickrBean();
+			
+			result.add(tag);
+		}
+		System.out.println(result);
+		return result;				
+	}
+	
 	public int getFavoriteTotal(String id, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		
 		HttpURLConnection connection = null;
@@ -90,7 +143,6 @@ public class Flickr extends HttpServlet{
 		
 		service.signRequest(accessToken, request);
 		Response response = request.send();
-		System.out.println("URL: " + address);
 		
 		String filename = "total.xml";
 		
@@ -120,7 +172,6 @@ public class Flickr extends HttpServlet{
 			
 		String total = (String) xpath.evaluate("@total", node, XPathConstants.STRING);
 		int likeCount = Integer.parseInt(total);
-//		System.out.println(likeCount);
 		return likeCount;				
 	}
 
@@ -177,8 +228,6 @@ public class Flickr extends HttpServlet{
 			
 			result.add(tempBean);
 		}
-		
-		System.out.println("Photos " + result.get(0));
 		return result;
 	}
 	
