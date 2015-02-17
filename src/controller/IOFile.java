@@ -3,10 +3,13 @@ package controller;
 import databeans.TagBean;
 import DAO.TagDAO;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.*;
 
@@ -30,22 +33,29 @@ public class IOFile {
 		
 
 		try {
-			File file = new File("./" + "tags.txt");
+			File file = new File("tags.txt");
 			System.out.println(file.getCanonicalPath());
-			
 			FileWriter outputPathFileWriter = new FileWriter(file);
 			BufferedWriter writer = new BufferedWriter(outputPathFileWriter);
 			LinkedList<String> list = new LinkedList<String>();
 			Iterator<Integer> iter = tmap.keySet().iterator();
+			int rank = tmap.keySet().size();
 			while (iter.hasNext()) {
-				list.addFirst(tmap.get(iter.next()));
+				list.addFirst(rank + " " + tmap.get(iter.next()) + " " + iter.next());
+				rank--;
 			}
-			
 			for (int i = 0; i < list.size(); i++) {
-				writer.write(list.get(i) + "\t");
+				writer.write(list.get(i));
+				writer.newLine();
 			}
-			
 			writer.close();
+			
+			/*Read File*/
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("tags.txt")));
+			String nextline;
+			while ((nextline = br.readLine()) != null) {
+				System.out.println(nextline);// fastest the way to read and write
+			}
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
