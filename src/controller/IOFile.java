@@ -33,7 +33,7 @@ public class IOFile {
 		
 
 		try {
-			File file = new File("tags.txt");
+			File file = new File("tag.csv");
 			System.out.println(file.getCanonicalPath());
 			FileWriter outputPathFileWriter = new FileWriter(file);
 			BufferedWriter writer = new BufferedWriter(outputPathFileWriter);
@@ -41,9 +41,10 @@ public class IOFile {
 			Iterator<Integer> iter = tmap.keySet().iterator();
 			int rank = tmap.keySet().size();
 			while (iter.hasNext()) {
-				list.addFirst(rank + " " + tmap.get(iter.next()) + " " + iter.next());
+				list.addFirst(rank + "," + tmap.get(iter.next()) + "," + iter.next());
 				rank--;
 			}
+			list.addFirst("rank,tag,count");
 			for (int i = 0; i < list.size(); i++) {
 				writer.write(list.get(i));
 				writer.newLine();
