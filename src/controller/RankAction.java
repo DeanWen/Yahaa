@@ -1,29 +1,11 @@
 package controller;
 
-import java.io.IOException;
-import java.util.Arrays;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPathExpressionException;
-
-import model.Flickr;
 import model.Model;
 
-import org.genericdao.RollbackException;
-import org.mybeans.form.FormBeanException;
-import org.mybeans.form.FormBeanFactory;
-import org.scribe.model.Token;
-import org.xml.sax.SAXException;
-
-import DAO.LikeDAO;
-import DAO.TagDAO;
 import DAO.UserDAO;
-import databeans.LikeBean;
-import databeans.TagBean;
 import databeans.UserBean;
-import formbeans.LikeFlickrForm;
 
 public class RankAction extends Action {
 
@@ -35,8 +17,10 @@ public class RankAction extends Action {
 	}
 
 
+	@Override
 	public String getName() { return "rank.do"; }
 
+	@Override
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserBean user = (UserBean) session.getAttribute("user");
