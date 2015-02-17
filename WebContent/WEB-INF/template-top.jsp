@@ -57,7 +57,6 @@
 			<div class="grid_12">
 				<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 					<ul class="sf-menu">
-<<<<<<< Updated upstream
 					<c:choose>
 						<c:when test = "${not empty user}">
 						<li ><a href="#">Data</a></li>
@@ -68,10 +67,8 @@
 						<li class="current"><a href="index.do">Index</a></li>
 						</c:otherwise>
 					</c:choose>
-=======
 						<li><a href="trend.jsp">Trend</a></li>
 						<li class="current"><a href="index.do">Home</a></li>
->>>>>>> Stashed changes
 						<li><a href="logout.do">Logout</a></li>
 
 					</ul>
