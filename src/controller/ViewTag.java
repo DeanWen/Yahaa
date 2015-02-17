@@ -1,8 +1,7 @@
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
-
-import model.Model;
+import java.io.*;
 
 public class ViewTag extends Action{
 	
