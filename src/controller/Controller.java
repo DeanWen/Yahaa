@@ -38,10 +38,15 @@ public class Controller extends HttpServlet {
 		Action.add(new setPassword(model));
 		Action.add(new LikeFlickrAction(model));
 		Action.add(new logoutAction(model));
+<<<<<<< HEAD
 		Action.add(new ViewTag());
 		
 
 		Action.add(new ViewGeography(model));
+=======
+		Action.add(new ViewGeography(model));
+		Action.add(new LikeTimeChart(model));
+>>>>>>> FETCH_HEAD
 
 	}
 

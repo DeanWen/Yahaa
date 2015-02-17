@@ -67,12 +67,12 @@
 						<li class="current"><a href="index.do">Index</a></li>
 						</c:otherwise>
 					</c:choose>
-<<<<<<< Updated upstream
+
 						<li><a href="trend.jsp">Trend</a></li>
-=======
+
 						<li><a href="viewGeography.do">Trend</a></li>
 						<li class="current"><a href="index.do">Home</a></li>
->>>>>>> Stashed changes
+
 						<li><a href="logout.do">Logout</a></li>
 
 					</ul>
