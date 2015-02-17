@@ -5,6 +5,8 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.scribe.model.Token;
+
 import DAO.UserDAO;
 import databeans.UserBean;
 import model.Model;
@@ -36,6 +38,10 @@ public class Login extends Action {
 				if (user != null && password != null && 
 						password.trim().length() != 0 && user.matchPassword(password)) {
 					session.setAttribute("user", user);
+					
+					Token flickrAccessToken = new Token(user.getFlickrToken(),user.getFlickrSecret());
+					session.setAttribute("flickrAccessToken", flickrAccessToken);
+					
 					return "home.do";
 				}
 			}
