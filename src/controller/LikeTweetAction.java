@@ -1,18 +1,27 @@
 package controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 import org.scribe.model.Token;
+import org.xml.sax.SAXException;
 
+import databeans.LikeBean;
+import databeans.TagBean;
 import databeans.UserBean;
 import formbeans.LikeTweetForm;
 import model.Model;
 import model.Twitter;
+import DAO.LikeDAO;
 import DAO.UserDAO;
+import DAO.TagDAO;
 
 public class LikeTweetAction extends Action {
 
@@ -22,10 +31,14 @@ public class LikeTweetAction extends Action {
 			.getInstance(LikeTweetForm.class);
 	private long tweetId;
 	private UserDAO userDAO;
+	private TagDAO tagDAO;
+	private LikeDAO likeDAO;
 	
 	public LikeTweetAction(Model model) {
 		twitter = model.getTwitter();
 		userDAO = model.getUserDAO();
+		tagDAO = model.getTagDAO();
+		likeDAO = model.getLikeDAO();
 	}
 
 	@Override
@@ -53,11 +66,41 @@ public class LikeTweetAction extends Action {
 			} else {
 				twitter.like(twitterToken, tweetId);
 			}			
-			twitter.getTag(twitterToken, tweetId);
-			twitter.getTime();
+			String tag = twitter.getTag(twitterToken, tweetId);
+			
+			String twitterId = user.getTwitterId();
+			TagBean tagBean = tagDAO.readById(twitterId, tag);
+			if (tagBean == null) {
+				TagBean newTagBean = new TagBean();
+				newTagBean.setCount(1);
+				newTagBean.setUserId(twitterId);
+				newTagBean.setTag(tag);
+				tagDAO.create(newTagBean);
+			}
+			else {
+				int count = tagBean.getCount();
+				tagBean.setCount(count + 1);
+				try {
+					tagDAO.update(tagBean);
+				} catch (RollbackException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			int count = 0;
+			count = twitter.getFavoriteTotal(twitterId, twitterToken);
+			String time = twitter.getTime();
+			LikeBean likeBean = new LikeBean();
+			likeBean.setUserId(twitterId);
+			likeBean.setTimestamp(time);
+			likeBean.setContentId(twitterId);
+			likeBean.setCount(count);
+			likeDAO.create(likeBean);
+			
 		} catch (FormBeanException e) {
 			e.printStackTrace();
 		}
+		
 		
 		return "home.do";
 	}

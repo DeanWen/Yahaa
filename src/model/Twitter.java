@@ -159,7 +159,7 @@ public class Twitter {
 		Response response = request.send();
 	}
 	
-	public void getTag(Token accessToken, long tweetId) {
+	public String getTag(Token accessToken, long tweetId) {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/show/" + tweetId + ".json");
 		
@@ -176,14 +176,14 @@ public class Twitter {
 			JSONObject firstTag = (JSONObject) hashtags.get(0);
 			tag = (String) firstTag.get("text");	
 		}		
-		System.out.println(tag);
+		return tag;
 	}
 	
-	public void getTime() {
+	public String getTime() {
 		DateFormat dateFormat = new SimpleDateFormat("HH");
 		Date current = new Date();
 		String time = dateFormat.format(current);
-		System.out.println(time);
+		return time;
 	}
 	
 	public void sendTwitter(Token accessToken, String text)
@@ -198,6 +198,22 @@ public class Twitter {
 		Response response = request.send();
 		
 		System.out.println("This is the response: " + response.getBody());
+	}
+
+	public int getFavoriteTotal(String tweetId, Token accessToken) {
+		StringBuilder query = new StringBuilder();
+		query.append("https://api.twitter.com/1.1/statuses/show/" + tweetId + ".json");
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, query.toString());
+		service.signRequest(accessToken, request);
+		
+		Response response = request.send();
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		JSONObject entities = (JSONObject) object.get("entities");
+		String favorites = (String) entities.get("favourites_count");
+		int count = Integer.parseInt(favorites);		
+		return count;
 	}
 	
 }
