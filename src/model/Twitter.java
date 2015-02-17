@@ -200,7 +200,7 @@ public class Twitter {
 		System.out.println("This is the response: " + response.getBody());
 	}
 
-	public int getFavoriteTotal(String tweetId, Token accessToken) {
+	public long getFavoriteTotal(long tweetId, Token accessToken) {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/show/" + tweetId + ".json");
 		
@@ -210,9 +210,7 @@ public class Twitter {
 		Response response = request.send();
 		
 		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
-		JSONObject entities = (JSONObject) object.get("entities");
-		String favorites = (String) entities.get("favourites_count");
-		int count = Integer.parseInt(favorites);		
+		long count = (long) object.get("favorite_count");	
 		return count;
 	}
 	

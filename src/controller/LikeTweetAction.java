@@ -87,14 +87,13 @@ public class LikeTweetAction extends Action {
 					e.printStackTrace();
 				}
 			}
-			int count = 0;
-			count = twitter.getFavoriteTotal(twitterId, twitterToken);
+			long count = twitter.getFavoriteTotal(tweetId, twitterToken);
 			String time = twitter.getTime();
 			LikeBean likeBean = new LikeBean();
 			likeBean.setUserId(twitterId);
 			likeBean.setTimestamp(time);
 			likeBean.setContentId(twitterId);
-			likeBean.setCount(count);
+			likeBean.setCount((int)count);
 			likeDAO.create(likeBean);
 			
 		} catch (FormBeanException e) {
