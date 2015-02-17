@@ -55,9 +55,11 @@
 	    	  
 	        var options = {
 	          title: 'Like Count',
-	          curveType: 'none',
+	          curveType: 'function',
+	          backgroundColor: 'F3F6F8',
 	          hAxis: {title: 'Time(H)',maxAlternation:1,showTextEvery:2},
-	          vAxis: {title: 'Count', minValue: 0}
+	          vAxis: {minValue: 0},
+	          colors: ['#47AA48']
 	        };
 	
 	        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
@@ -68,7 +70,7 @@
 	}
 %>
 	<body>
-	<div id="chart_div" style="width: 900px; height: 500px"></div>
+	<div id="chart_div" style="width: 600px; height: 500px"></div>
 	</body>
 </div>
 </div>
