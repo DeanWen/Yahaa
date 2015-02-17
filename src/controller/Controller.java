@@ -38,12 +38,7 @@ public class Controller extends HttpServlet {
 		Action.add(new setPassword(model));
 		Action.add(new LikeFlickrAction(model));
 		Action.add(new logoutAction(model));
-
 		Action.add(new ViewTag());
-		
-
-		Action.add(new ViewGeography(model));
-
 		Action.add(new ViewGeography(model));
 		Action.add(new LikeTimeChart(model));
 
