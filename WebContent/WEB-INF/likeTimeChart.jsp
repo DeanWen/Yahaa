@@ -1,15 +1,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" import="java.util.*"%>
-<jsp:include page="template-top.jsp" />
+<jsp:include page="template-trendtop.jsp" />
 <!--==============================Content=================================-->
-<div id="page-wrapper">
-	<div class="container-fluid">
-		<div class="row">
-    		<div class="col-lg-12">
-<%
-	if (request.getAttribute("countList") != null) {
-%>
+<div class="inner maxheight">
+	<h3>Video</h3>
+	<div id="chart_div"></div>
+</div>
+</div>
+</div>
+<div class="grid_4">
+	<div class="box">
+		<div class="inner maxheight">
+			<h4>Top Videos</h4>
+			<ul class="list">
+				<li class="li"><a href="viewGeography.do">Geography Trend</a></li>
+				<li class="li"><a href="likeTimeChart.do">Time Trend</a></li>
+				<li class="li"><a href="viewTag.do">Tag Cloud</a></li>
+			</ul>
+			<h4 class="head1">Real Time</h4>
+			<div class="block2">
+			
 <script type="text/javascript" src="https://www.google.com/jsapi"?autoload={
             'modules':[{
               'name':'visualization',
@@ -66,14 +77,7 @@
 	        chart.draw(data, options);
       }
     </script>
-    <%
-	}
-%>
-	<body>
-	<div id="chart_div" style="width: 600px; height: 500px"></div>
-	</body>
-</div>
-</div>
-</div>
-</div>
-<jsp:include page="template-bottom.jsp" />
+
+
+			</div>
+			<jsp:include page="template-trendbottom.jsp" />

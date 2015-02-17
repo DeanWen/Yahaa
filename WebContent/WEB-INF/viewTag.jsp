@@ -155,7 +155,7 @@ function draw(words) {
 							<ul style="padding-left: 10%;list-style:disc">
 								<li ><a href="viewGeography.do">Geography
 										Trend</a></li>
-								<li ><a href="viewTime.do">Time Trend</a></li>
+								<li ><a href="likeTimeChart.do">Time Trend</a></li>
 								<li ><a href="viewTag.do">Tag Cloud</a></li>
 							</ul>
 							<h4 class="head1" style="padding-left:10%">Flickr Tag</h4>
