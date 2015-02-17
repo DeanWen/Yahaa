@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,15 @@ public class Controller extends HttpServlet {
 
 	public void init() throws ServletException {
 		Model model = new Model(getServletConfig());
-
+		
+		IOFile T = new IOFile(model);
+		try {
+			T.readData();
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		Action.add(new IndexAction(model));
 		Action.add(new HomeAction(model));
 		Action.add(new Login(model));
@@ -29,6 +38,7 @@ public class Controller extends HttpServlet {
 		Action.add(new setPassword(model));
 		Action.add(new LikeFlickrAction(model));
 		Action.add(new logoutAction(model));
+		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

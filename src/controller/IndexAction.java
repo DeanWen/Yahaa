@@ -26,6 +26,8 @@ public class IndexAction extends Action {
 
 	public String perform(HttpServletRequest request) {
 		try {
+			
+			
 			HashMap<String, String> photos = new HashMap<String, String>();
 			photos = flickr.fetchPhotoExample();
 			request.setAttribute("photos", photos);

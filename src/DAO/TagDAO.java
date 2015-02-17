@@ -58,4 +58,18 @@ public class TagDAO extends GenericDAO<TagBean> {
 			return -1;
 		}
 	}
+	
+	public TagBean[] getAll() {
+		try {
+			TagBean[] array = match();
+			if (array == null || array.length == 0) {
+				return null;
+			} else {
+				return array;
+			}
+		} catch (RollbackException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
