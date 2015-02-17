@@ -59,7 +59,7 @@
 					<ul class="sf-menu">
 					<c:choose>
 						<c:when test = "${not empty user}">
-						<li ><a href="#">Data</a></li>
+						<li><a href="viewGeography.do">Trend</a></li>
 						<li class="current"><a href="home.do">Home</a></li>
 						</c:when>
 						<c:otherwise>
@@ -67,10 +67,6 @@
 						<li class="current"><a href="index.do">Index</a></li>
 						</c:otherwise>
 					</c:choose>
-
-						<li><a href="viewGeography.do">Trend</a></li>
-						<li class="current"><a href="index.do">Home</a></li>
-
 						<li><a href="logout.do">Logout</a></li>
 
 					</ul>
