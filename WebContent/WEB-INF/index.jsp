@@ -40,6 +40,7 @@
 <!-- CSS for slidesjs.com example -->
 <link rel="stylesheet" href="css/example.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/front.css">
 <!-- End CSS for slidesjs.com example -->
 
 <!-- SlidesJS Optional: If you'd like to use this design -->
@@ -204,9 +205,10 @@ a:hover.slidesjs-stop {
                 <div class="grid_12">
                     <h1>
                         <a href="index.jsp"> <img src="images/logo.gif"
-                            alt="Your Happy Family">
+                            alt="Yahaa">
                         </a>
                     </h1>
+                    
                 </div>
             </div>
         </header>
@@ -229,7 +231,7 @@ a:hover.slidesjs-stop {
     </div>
     <div class="main">
 <!--==============================Content=================================-->
-	
+
 		<!-- SlidesJS Required: Start Slides -->
   <!-- The container is used to define the width of the slideshow -->
   <div class="container">
