@@ -60,6 +60,7 @@
 					<c:choose>
 						<c:when test = "${not empty user}">
 						<li><a href="viewGeography.do">Trend</a></li>
+						<li><a href="rank.do">Rank</a></li>
 						<li class="current"><a href="home.do">Home</a></li>
 						</c:when>
 						<c:otherwise>

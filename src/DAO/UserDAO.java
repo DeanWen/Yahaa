@@ -32,6 +32,7 @@ import org.genericdao.MatchArg;
 import org.genericdao.RollbackException;
 import org.genericdao.Transaction;
 
+import databeans.TagBean;
 import databeans.UserBean;
 
 public class UserDAO extends GenericDAO<UserBean> {
@@ -168,6 +169,20 @@ public class UserDAO extends GenericDAO<UserBean> {
 				Transaction.rollback();
 			}
 		}
+	}
+	
+	public UserBean[] getAll() {
+		try {
+			UserBean[] array = match();
+			if (array == null || array.length == 0) {
+				return null;
+			} else {
+				return array;
+			}
+		} catch (RollbackException e) {
+			e.printStackTrace();
+			return null;
+		}		
 	}
 	
 	public void setTotalLikeReceived (UserBean user, int totalLikeReceived) throws RollbackException {
