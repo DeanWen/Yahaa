@@ -216,12 +216,16 @@ public class Flickr extends HttpServlet{
 		Response response = request.send();
 		
 		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
-		JSONObject entities = (JSONObject) object.get("location");
-		double latitude = (double) entities.get("latitude");
-		double longitude = (double) entities.get("longitude");
+		JSONObject entities = (JSONObject) object.get("photo");
+		JSONObject location = (JSONObject) entities.get("location");
+		String latitude = (String) location.get("latitude");
+		String longitude = (String) location.get("longitude");
 		
-		position.add(latitude);
-		position.add(longitude);
+		double la = Double.parseDouble(latitude);
+		double lo = Double.parseDouble(longitude);
+		
+		position.add(la);
+		position.add(lo);
 		return position;
 	}
 	public ArrayList<FlickrBean> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {

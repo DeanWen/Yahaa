@@ -10,7 +10,7 @@ import org.scribe.model.Token;
 import model.Flickr;
 import model.Model;
 
-public class ViewGeography {
+public class ViewGeography extends Action{
 	private Flickr flickr;
 	
 	public ViewGeography(Model model) {

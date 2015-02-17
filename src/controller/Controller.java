@@ -38,7 +38,11 @@ public class Controller extends HttpServlet {
 		Action.add(new setPassword(model));
 		Action.add(new LikeFlickrAction(model));
 		Action.add(new logoutAction(model));
+<<<<<<< Updated upstream
 		
+=======
+		Action.add(new ViewGeography(model));
+>>>>>>> Stashed changes
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
