@@ -23,6 +23,9 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.FlickrApi;
 import org.scribe.model.OAuthRequest;
@@ -202,7 +205,25 @@ public class Flickr extends HttpServlet{
 		return likeCount;				
 	}
 
-	
+	public ArrayList<Double> getGeoData(String id, Token accessToken) {
+		ArrayList<Double> position = new ArrayList<Double>();
+		String query = "flickr.photos.geo.getLocation";
+		String address = "https://api.flickr.com/services/rest/?method=" + query + "&api_key=" + API_KEY
+				+ "&photo_id=" + id + "&format=json&nojsoncallback=?";
+		
+		OAuthRequest request = new OAuthRequest(Verb.GET, address);
+		service.signRequest(accessToken, request);
+		Response response = request.send();
+		
+		JSONObject object = (JSONObject) JSONValue.parse(response.getBody());
+		JSONObject entities = (JSONObject) object.get("location");
+		double latitude = (double) entities.get("latitude");
+		double longitude = (double) entities.get("longitude");
+		
+		position.add(latitude);
+		position.add(longitude);
+		return position;
+	}
 	public ArrayList<FlickrBean> fetchContactPhotosMethod(int count, Token accessToken) throws IOException, ParserConfigurationException, SAXException, XPathExpressionException {
 		ArrayList<FlickrBean> result = new ArrayList<FlickrBean>();
 		
@@ -294,4 +315,5 @@ public class Flickr extends HttpServlet{
 		String time = dateFormat.format(current);
 		return time;
 	}
+	
 }
