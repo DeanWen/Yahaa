@@ -912,6 +912,18 @@ a.bot span i:hover{
     color:#ef3619;
 }
 
+a.bot span em{
+font-size: 25px;
+text-align: center;
+display: block;
+margin-top: 10px; /* outside Codepen is actually 30px */
+color:#ef3619;
+}
+a.bot span em:hover{
+    -webkit-transform: scale(1.05);
+    color:#ffffff;
+}
+
 a.bot span:active{
     -webkit-transform: scale(1);
     color: #ef3619;

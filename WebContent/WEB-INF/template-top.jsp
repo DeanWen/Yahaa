@@ -68,7 +68,6 @@
 						</c:otherwise>
 					</c:choose>
 						<li><a href="trend.jsp">Trend</a></li>
-						<li class="current"><a href="index.do">Home</a></li>
 						<li><a href="logout.do">Logout</a></li>
 
 					</ul>

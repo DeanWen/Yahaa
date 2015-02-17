@@ -111,12 +111,12 @@ public class Twitter {
 			String text = (String) next.get("text");
 			Long count = (Long) next.get("favorite_count");
 			Long id = (Long) next.get("id");
-			//boolean favorite = (boolean) next.get("favorited");
+			boolean favorite = (boolean) next.get("favorited");
 			TweetBean tempBean = new TweetBean();
 			tempBean.setContent(text);
 			tempBean.setLikeCount(count);
 			tempBean.setId(id);
-			//tempBean.setFavorited(favorite);
+			tempBean.setFavorited(favorite);
 			result.add(tempBean);
 		}
 		

@@ -15,7 +15,14 @@
 							<form action="likeTweet.do" method="POST" name="likeTweet_form">
 							<input type="hidden" name="id" value="${tweet.getId()}"/>
 							<a class="bot"><span>
-                            <i class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Like"/></i>                           
+							<c:choose>
+                                <c:when test="${tweet.getFavorited()}">
+                                    <em class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Unlike"/></em> 
+                                </c:when> 
+                                <c:otherwise>
+                                    <i class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Like"/></i>
+                                </c:otherwise> 
+                            </c:choose>                           
                             </span></a>							
 							</form>
 						</div>
@@ -27,7 +34,14 @@
 							<form action="likeTweet.do" method="POST" name="likeTweet_form">
 							<input type="hidden" name="id" value="${tweet.getId()}"/>
                             <a class="bot"><span>
-                            <i class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Like"/></i>                           
+                            <c:choose>
+                                <c:when test="${tweet.getFavorited()}">
+                                    <em class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Unlike"/></em> 
+                                </c:when> 
+                                <c:otherwise>
+                                    <i class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Like"/></i>
+                                </c:otherwise> 
+                            </c:choose>                      
                             </span></a>
 							</form>
 						</div>
@@ -43,7 +57,14 @@
                     <form action="likeFlickr.do" method="POST" name="likeFlickr_form">
 							<input type="hidden" name="id" value="${photo.getId()}"/>
                             <a class="bot"><span>
-                            <i class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Like"/></i>                           
+                            <c:choose>
+                                <c:when test="${photo.getFavorited()}">
+                                    <em class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Unlike"/></em> 
+                                </c:when> 
+                                <c:otherwise>
+                                    <i class = "icon-heart"><input class ="heart" type="submit" name="button" value ="Like"/></i>
+                                </c:otherwise> 
+                            </c:choose>
                             </span></a>
 					</form>
 
@@ -52,7 +73,7 @@
         </div>
 		<div class="clear"></div>
 		<div class="grid_12">
-			<a href="#" class="round"> Older Posts</a>
+			<a href="#" class="round"> Back to Top</a>
 		</div>
 	</div>
 </div>

@@ -255,11 +255,13 @@ public class Flickr extends HttpServlet{
         	String secret = (String) xpath.evaluate("@secret", node, XPathConstants.STRING);
 			String flickrurl = "http://static.flickr.com/" + server + "/" + id + "_" + secret + ".jpg";
 			String title = (String) xpath.evaluate("@title", node, XPathConstants.STRING);
+			boolean favorited = this.isFavorite(id, accessToken);
 			
 			FlickrBean tempBean = new FlickrBean();
 			tempBean.setId(id);
 			tempBean.setTitle(title);
 			tempBean.setUrl(flickrurl);
+			tempBean.setFavorited(favorited);
 			
 			result.add(tempBean);
 		}
@@ -267,7 +269,7 @@ public class Flickr extends HttpServlet{
 	}
 	
 	public ArrayList<FlickrBean> fetchContactPhotos(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
-		return fetchContactPhotosMethod(10, accessToken);
+		return fetchContactPhotosMethod(8, accessToken);
 	}
 
 	public void addFavourites(Token accessToken, String photo_id) {

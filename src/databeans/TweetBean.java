@@ -8,7 +8,7 @@ public class TweetBean implements Serializable {
 	private long id;
 	private long likeCount;
 	private String content;
-	//private boolean favorited;
+	private boolean favorited;
 
 	public long getId() {
 		return id;
@@ -28,11 +28,11 @@ public class TweetBean implements Serializable {
 	public void setContent(String content) {
 		this.content = content;
 	}
-//	public boolean getFavorited() {
-//		return favorited;
-//	}
-//	public void setFavorited(boolean favorite){
-//		this.favorited = favorite;
-//	}
+	public boolean getFavorited() {
+		return favorited;
+	}
+	public void setFavorited(boolean favorite){
+		this.favorited = favorite;
+	}
 	
 }

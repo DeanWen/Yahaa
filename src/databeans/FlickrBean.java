@@ -5,6 +5,7 @@ public class FlickrBean {
 	private String url;
 	private int likeCount;
 	private String title;
+	private boolean favorited;
 
 	public String getId() {
 		return id;
@@ -34,5 +35,12 @@ public class FlickrBean {
 	}
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
+	}
+	
+	public boolean getFavorited() {
+		return favorited;
+	}
+	public void setFavorited(boolean favorite){
+		this.favorited = favorite;
 	}
 }
