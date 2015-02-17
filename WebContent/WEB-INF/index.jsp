@@ -204,7 +204,7 @@ a:hover.slidesjs-stop {
             <div class="container_12">
                 <div class="grid_12">
                     <h1>
-                        <a href="index.jsp"> <img src="images/logo.gif"
+                        <a href="index.do"> <img src="images/logo.gif"
                             alt="Yahaa">
                         </a>
                     </h1>
@@ -218,10 +218,16 @@ a:hover.slidesjs-stop {
             <div class="grid_12">
                 <nav class="horizontal-nav full-width horizontalNav-notprocessed">
                     <ul class="sf-menu">
-                        <li><a href="home.do">Home</a></li>
-                        <li class="current"><a href="index.do">Index</a></li>
-                        <li><a href="logout.do">Logout</a></li>
-
+					<c:choose>
+						<c:when test = "${not empty user}">
+						<li><a href="home.do">Home</a></li>
+						</c:when>
+						<c:otherwise>
+						<li><a href="login.do">Login</a></li>
+						</c:otherwise>
+					</c:choose>
+						<li class="current"><a href="index.do">Index</a></li>
+						<li><a href="logout.do">Logout</a></li>
                     </ul>
                 </nav>
                 <div class="clear"></div>
