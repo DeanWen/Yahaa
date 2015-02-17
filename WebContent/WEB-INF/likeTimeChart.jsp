@@ -4,7 +4,7 @@
 <jsp:include page="template-trendtop.jsp" />
 <!--==============================Content=================================-->
 <div class="inner maxheight">
-	<h3>Video</h3>
+	<h3>Number of Like By Hour</h3>
 	<div id="chart_div"></div>
 </div>
 </div>
@@ -18,7 +18,7 @@
 				<li class="li"><a href="likeTimeChart.do">Time Trend</a></li>
 				<li class="li"><a href="viewTag.do">Tag Cloud</a></li>
 			</ul>
-			<h4 class="head1">Real Time</h4>
+			<h4 class="head1"></h4>
 			<div class="block2">
 			
 <script type="text/javascript" src="https://www.google.com/jsapi"?autoload={

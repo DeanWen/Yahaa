@@ -12,7 +12,7 @@
 			<h4>Top Videos</h4>
 			<ul class="list">
 				<li class="li"><a href="viewGeography.do">Geography Trend</a></li>
-				<li class="li"><a href="likeChartTime.do">Time Trend</a></li>
+				<li class="li"><a href="likeTimeChart.do">Time Trend</a></li>
 				<li class="li"><a href="viewTag.do">Tag Cloud</a></li>
 			</ul>
 			<h4 class="head1">Real Time</h4>
