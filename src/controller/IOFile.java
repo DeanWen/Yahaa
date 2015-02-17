@@ -13,8 +13,6 @@ import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.*;
 
-import javax.servlet.http.HttpServletRequest;
-
 import model.Model;
 
 public class IOFile {
@@ -52,7 +50,7 @@ public class IOFile {
 			writer.close();
 			
 			/*Read File*/
-			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("tags.txt")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("tag.csv")));
 			String nextline;
 			while ((nextline = br.readLine()) != null) {
 				System.out.println(nextline);// fastest the way to read and write
