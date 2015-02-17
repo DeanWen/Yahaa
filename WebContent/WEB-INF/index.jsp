@@ -220,14 +220,17 @@ a:hover.slidesjs-stop {
                     <ul class="sf-menu">
 					<c:choose>
 						<c:when test = "${not empty user}">
-						<li><a href="home.do">Home</a></li>
+						<li><a href="home.do">Home</a></li>						
+						<li class="current"><a href="index.do">Index</a></li>
+						<li><a href="logout.do">Logout</a></li>
 						</c:when>
 						<c:otherwise>
 						<li><a href="login.do">Login</a></li>
+						<li class="current"><a href="index.do">Index</a></li>
+						<li><a href="rank.do">Rank</a></li>
 						</c:otherwise>
 					</c:choose>
-						<li class="current"><a href="index.do">Index</a></li>
-						<li><a href="logout.do">Logout</a></li>
+
                     </ul>
                 </nav>
                 <div class="clear"></div>
