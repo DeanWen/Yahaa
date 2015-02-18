@@ -81,6 +81,14 @@ public class LikeFlickrAction extends Action {
 			}
 			
 			String twitterId = user.getTwitterId();
+			int likeCount = user.getLikeGiven();
+			user.setLikeGiven(likeCount + 1);
+			try {
+				userDAO.update(user);
+			} catch (RollbackException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			TagBean tagBean = tagDAO.readById(twitterId, tag);
 			if (tagBean == null) {
 				TagBean newTagBean = new TagBean();
