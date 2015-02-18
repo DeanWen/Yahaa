@@ -31,10 +31,23 @@ public class LikeTimeChart extends Action {
 		ArrayList<String> likeRec = likeDAO.getTimeListByUserId(twitterId);
 		ArrayList<Integer> countList = new ArrayList<Integer>();
 		ArrayList<String> time = new ArrayList<String>();
-		for (int i = 0; i < 24; i++) {
+		for (int i = 0; i < 10; i++) {
 			time.add(String.valueOf(i));
 			int count = 0;
 			for (String s : likeRec) {
+				 
+				if (s.equals("0"+String.valueOf(i))) {
+					count++;
+				}
+			}
+			countList.add(count);
+		}
+		
+		for (int i = 10; i < 24; i++) {
+			time.add(String.valueOf(i));
+			int count = 0;
+			for (String s : likeRec) {
+				 
 				if (s.equals(String.valueOf(i))) {
 					count++;
 				}
