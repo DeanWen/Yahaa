@@ -208,22 +208,13 @@ a:hover.slidesjs-stop {
             <div class="grid_12">
                 <nav class="horizontal-nav full-width horizontalNav-notprocessed">
                     <ul class="sf-menu">
-					<c:choose>
-						<c:when test = "${not empty user}">
-						<li><a href="home.do">Home</a></li>						
-						<li class="current"><a href="index.do">Browse</a></li>
-						<li><a href = "viewGeography.do">Trend</a></li>
-						<li><a href = "rank.do">Rank</a></li>
-						<li><a href="logout.do">Logout</a></li>
-						</c:when>
-						<c:otherwise>
+					
+						
 						
 						<li class="current"><a href="index.do">Browse</a></li>
 						<li><a href="rank.do">Rank</a></li>
 						<li><a href="login.do">Login</a></li>
-						</c:otherwise>
-					</c:choose>
-
+				
                     </ul>
                 </nav>
                 <div class="clear"></div>
