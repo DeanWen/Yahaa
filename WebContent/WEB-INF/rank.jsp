@@ -33,8 +33,9 @@
 	        <c:choose>
 	        <c:when test = "${not empty user}">
 	            <form action="sendTweet.do" method="POST">
+	                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspShare with friends: <input type="text" name="text" size="40" style="padding: 2px; margin 2px;" placeholder = "I have given ${user.getLikeGiven()} likes at Yahaa. Come join me!" required = "required"><br></p>
 	                <button type="submit" style="border: 0; background: transparent; cursor:pointer;">
-	                    <img src="images/Twitter-Button.png" width="190" height="60" alt="submit" />
+	                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="images/Twitter-Button.png" width="80" height="25" alt="submit" /></p>
 	                </button>
 	            </form>
 	        </c:when>
@@ -91,6 +92,7 @@
 	          title: 'User Rank',
 	          hAxis: {title: 'Like Count',minValue:0},
 	          vAxis: {minValue: 0},
+	          colors: ['#5AB8E3']
 	        };
 	
 	        var chart = new google.visualization.BarChart(document.getElementById('rank_div'));
