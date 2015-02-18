@@ -1,7 +1,19 @@
 package controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
@@ -10,7 +22,9 @@ import javax.servlet.http.HttpSession;
 import org.scribe.model.Token;
 import org.xml.sax.SAXException;
 
+import DAO.TagDAO;
 import databeans.FlickrBean;
+import databeans.TagBean;
 import databeans.TweetBean;
 import databeans.UserBean;
 import model.Flickr;
@@ -23,10 +37,12 @@ public class HomeAction extends Action {
 	private Flickr flickr;
 	private Token twitterToken;
 	private Token flickrToken;
+	private TagDAO tagDAO;
 	
 	public HomeAction(Model model) {
 		twitter = model.getTwitter();
 		flickr = model.getFlickr();
+		tagDAO = model.getTagDAO();
 	}
 
 	public String getName() { return "home.do"; }
@@ -36,7 +52,7 @@ public class HomeAction extends Action {
 		if (session.getAttribute("user") == null) {
 			return "index.jsp";
 		}
-		
+
 		UserBean user = (UserBean) session.getAttribute("user");
 		String tToken = user.getTwitterToken();
 		String tSecret = user.getTwitterSecret();
@@ -45,13 +61,14 @@ public class HomeAction extends Action {
 		twitterToken = new Token(tToken, tSecret);
 		flickrToken = new Token(fToken, fSecret);
 		
+		
 //		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 //		flickrToken = (Token) session.getAttribute("flickrAccessToken");
 
 		
 		ArrayList<TweetBean> timeline = new ArrayList<TweetBean>();
 		try {
-
+			readData(user.getTwitterId(), request);
 			timeline = twitter.getTimeLine(twitterToken);
 
 		} catch (Exception e) {
@@ -85,4 +102,48 @@ public class HomeAction extends Action {
 		
 		return "home.jsp";
 	}
+	
+	public void readData(String userId, HttpServletRequest request) throws URISyntaxException {
+		TagBean[] all = tagDAO.getAllbyUserId(userId);
+		
+		for (int i = 0; i < all.length - 1; i++) {
+			for (int j = i + 1; j < all.length; j++) {
+				if (all[i].getCount() < all[j].getCount()) {
+					TagBean temp = all[j];
+					all[i] = all[j];
+					all[j] = temp;
+				}
+			}
+		}
+		
+		try {
+			File file = new File("tag.csv");
+			String filePath = file.getCanonicalPath();
+			System.out.println(filePath);
+			HttpSession session = request.getSession();
+			session.setAttribute("filePath", filePath);
+			
+			FileWriter outputPathFileWriter = new FileWriter(file);
+			BufferedWriter writer = new BufferedWriter(outputPathFileWriter);
+			writer.write("rank,tag,count");
+			writer.newLine();
+			for (int i = 0 ; i < all.length; i++) {
+				writer.write((i+1) + "," + all[i].getTag() + "," + all[i].getCount());
+				writer.newLine();
+			}
+			writer.close();
+			
+			/*Read File*/
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("tag.csv")));
+			String nextline;
+			while ((nextline = br.readLine()) != null) {
+				System.out.println(nextline);// fastest the way to read and write
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

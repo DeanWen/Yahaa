@@ -22,7 +22,7 @@ public class IOFile {
 	}
 	
 	public void readData() throws URISyntaxException {
-		TagBean[] all = tagDAO.getAll();
+		TagBean[] all = tagDAO.getAllbyUserId("id");
 		
 		TreeMap<Integer, String> tmap = new TreeMap<Integer, String>();
 		for (int i = 0; i < all.length; i++) {

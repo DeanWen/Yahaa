@@ -19,6 +19,8 @@
 <script src="js/jquery.mobilemenu.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/processing.js"></script>
+<script src="js/d3.v3.min.js"></script>
+<script src="js/d3.layout.cloud.js"></script>
 <script src="../js/tagcanvas.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	window.onload = function() {
@@ -52,9 +54,16 @@
 		'packages' : [ 'geochart' ]
 	});
 	google.setOnLoadCallback(drawVisualization);
-
+	
+	var stateData = [];
+	d3.csv("js/states.csv", function(data){
+		data.forEach(function(d){
+		stateData.push([d.state, d.count]);
+		});
+	});	
+	
 	function drawVisualization() {
-		var data = google.visualization.arrayToDataTable([
+		/* var data = google.visualization.arrayToDataTable([
 				[ 'State', 'Flickr & Twitter Sum' ], [ 'Alabama', 20 ],
 				[ 'Alaska', 3 ], [ 'Arizona', 2 ], [ 'Arkansas', 1 ],
 				[ 'California', 50 ], [ 'Colorado', 4 ], [ 'Connecticut', 8 ],
@@ -73,11 +82,18 @@
 				[ 'South Dakota', 0 ], [ 'Tennessee', 0 ], [ 'Texas', 41 ],
 				[ 'Utah', 22 ], [ 'Vermont', 0 ], [ 'Virginia', 16 ],
 				[ 'Washington', 45 ], [ 'West Virginia', 6 ],
-				[ 'Wisconsin', 9 ], [ 'Wyoming', 0 ] ]);
-
+				[ 'Wisconsin', 9 ], [ 'Wyoming', 0 ] ]); */
+	
+		var states = [['state', 'count']];
+		for(i = 1; i < stateData.length; i++) {
+			var cur = [stateData[i][0], parseInt(stateData[i][1])];
+			states.push(cur);
+		}
+		
+		var Final = google.visualization.arrayToDataTable(states);
 		var geochart = new google.visualization.GeoChart(document
 				.getElementById('visualization'));
-		geochart.draw(data, {
+		geochart.draw(Final, {
 			width : 556,
 			height : 347,
 			region : "US",

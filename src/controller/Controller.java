@@ -17,14 +17,6 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
 		Model model = new Model(getServletConfig());
 		
-		IOFile T = new IOFile(model);
-		try {
-			T.readData();
-		} catch (URISyntaxException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		Action.add(new IndexAction(model));
 		Action.add(new HomeAction(model));
 		Action.add(new Login(model));
@@ -33,7 +25,7 @@ public class Controller extends HttpServlet {
 		Action.add(new TwitterCallback(model));
 		Action.add(new FlickrCallback(model));
 		Action.add(new LikeTweetAction(model));
-		Action.add(new SendTweetAction(model));
+//		Action.add(new SendTweetAction(model));
 		Action.add(new FetchContactsPhotos(model));
 		Action.add(new RegisterAction(model));
 		Action.add(new setPassword(model));

@@ -109,7 +109,7 @@ var cityData = [],
 
 var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
-            .range(["#C9E4D6", "#98D0B9", "#C8E2B1", "#AFD788", "#83C75D", "#5BBD2B", "#50A625", "#489620", "#367517", "#008C5E", "#007F54", "#006241"]);
+            .range(["#009100", "#007500", "#00bb00", "#c4c440", "#00a600", "#006000", "#808040", "#4f4f4f", "#0e0e0", "#8c8c00", "#00a600", "#f9f9f9"]);
 
 
 d3.csv("js/tag.csv", function(data) {
@@ -121,10 +121,10 @@ d3.csv("js/tag.csv", function(data) {
     d3.layout.cloud()
             .size([width, height])
             .words(cityData.map(function(d){
-                return {text: d.tag, size: (5 + d.count / 200 * 30)};
+                return {text: d.tag, size: (5 + d.count / 200 * 40)};
             }))
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
-            .font("Impact")
+            .font("serif")
             .fontSize(function(d) { return d.size; })
             .on("end", draw)
             .start();
