@@ -10,10 +10,10 @@ import DAO.UserDAO;
 import model.Model;
 import databeans.UserBean;
 
-public class SetPassword extends Action {
+public class setPassword extends Action {
 	private UserDAO userDAO;
 	
-	public SetPassword (Model model) {
+	public setPassword (Model model) {
 		userDAO = model.getUserDAO();
 	}
 
