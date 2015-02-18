@@ -1,7 +1,6 @@
 package controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import model.Model;
 
 import DAO.UserDAO;
@@ -22,8 +21,6 @@ public class RankAction extends Action {
 
 	@Override
 	public String perform(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		UserBean user = (UserBean) session.getAttribute("user");
 		list = userDAO.getAll();
 		quickSort(0, list.length - 1);	
 		for(int i = 0; i < list.length / 2; i++)

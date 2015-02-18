@@ -68,6 +68,7 @@
 						<li class="current"><a href="index.do">Index</a></li>
 						</c:otherwise>
 					</c:choose>
+						<li><a href="index.do">Index</a></li>
 						<li><a href="logout.do">Logout</a></li>
 
 					</ul>

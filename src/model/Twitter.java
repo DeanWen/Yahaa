@@ -197,7 +197,6 @@ public class Twitter {
 		
 		Response response = request.send();
 		
-		System.out.println("This is the response: " + response.getBody());
 	}
 
 	public long getFavoriteTotal(long tweetId, Token accessToken) {
