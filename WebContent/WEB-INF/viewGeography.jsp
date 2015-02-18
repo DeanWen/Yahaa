@@ -81,7 +81,7 @@ class Particle {
 
     ellipseMode(CENTER);
     noStroke();
-    fill(0, 128, 0,timer);
+    fill(201, 108, 19,timer);
     ellipse(loc.x,loc.y,r,r);
   }
   
