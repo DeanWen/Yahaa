@@ -31,6 +31,7 @@ public class SendTweetAction extends Action {
 		String like = Integer.toString(user.getLikeGiven());
 		String send = "I have given " + like + " likes on Yahaa. Come join me!";
 		try {
+			System.out.println("I am sending@!!!!!");
 			twitter.sendTwitter(twitterToken, send);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
