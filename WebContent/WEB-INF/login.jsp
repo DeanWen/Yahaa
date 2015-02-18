@@ -24,31 +24,22 @@
             $().UItoTop({ easingType: 'easeOutQuart' });
         })
         </script>
-<!--[if lt IE 8]>
-        <div style=' clear: both; text-align:center; position: relative;'>
-            <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-                <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
-            </a>
-        </div>
-        <![endif]-->
-<!--[if lt IE 9]>
-        <script src="js/html5shiv.js"></script>
-        <link rel="stylesheet" media="screen" href="css/ie.css">
-<![endif]-->
+
 
 </head>
 <body class="page1" id="top">
     <!--==============================header=================================-->
-    <div class="main">
+   <div class="main">
         <header>
             <div class="clear"></div>
             <div class="container_12">
                 <div class="grid_12">
                     <h1>
                         <a href="index.do"> <img src="images/logo.gif"
-                            alt="Your Happy Family">
+                            alt="Yahaa">
                         </a>
                     </h1>
+                    
                 </div>
             </div>
         </header>
@@ -58,16 +49,12 @@
             <div class="grid_12">
                 <nav class="horizontal-nav full-width horizontalNav-notprocessed">
                     <ul class="sf-menu">
-                    <c:choose>
-                        <c:when test = "${not empty user}">
-                        <li class="current"><a href="home.do">Home</a></li>
-                        </c:when>
-                        <c:otherwise>
-                        <li><a href="login.do">Login</a></li>
-                        <li class="current"><a href="index.do">Index</a></li>
-                        </c:otherwise>
-                    </c:choose>
-                        <li><a href="logout.do">Logout</a></li>
+				
+						
+						<li><a href="index.do">Browse</a></li>
+						<li><a href="rank.do">Rank</a></li>
+						<li class="current"><a href="login.do">Login</a></li>
+					
 
                     </ul>
                 </nav>
