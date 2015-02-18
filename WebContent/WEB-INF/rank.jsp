@@ -10,7 +10,7 @@
         <div class="grid_6">
         <br>
         <br>
-        <table>
+        <table class="rank">
             <thead>
             <tr>
                 <th>Rank</th>
@@ -33,7 +33,7 @@
 	        <c:choose>
 	        <c:when test = "${not empty user}">
 	            <form action="sendTweet.do" method="POST">
-	                <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspShare with friends: <input type="text" name="text" size="40" style="padding: 2px; margin 2px;" placeholder = "I have given ${user.getLikeGiven()} likes at Yahaa. Come join me!" required = "required"><br></p>
+	                <p style="font-size: 18px; padding: 2px;">&nbsp&nbsp&nbspShare with friends: <input type="text" name="text" size="40" style="padding: 5px; margin 5px;" value = "I have given ${user.getLikeGiven()} likes at Yahaa. Come join me!" required = "required"><br></p>
 	                <button type="submit" style="border: 0; background: transparent; cursor:pointer;">
 	                    <p>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="images/Twitter-Button.png" width="80" height="25" alt="submit" /></p>
 	                </button>
