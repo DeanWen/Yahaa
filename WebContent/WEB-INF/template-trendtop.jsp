@@ -179,6 +179,7 @@ dataTable.setValue(index,3,"Flickr Count");
 			resolution : "provinces"
 		});
 	}
+<<<<<<< HEAD
 </script> -->
 <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>
@@ -191,6 +192,10 @@ dataTable.setValue(index,3,"Flickr Count");
     <script src="js/html5shiv.js"></script>
     <link rel="stylesheet" media="screen" href="css/ie.css">
     <![endif]-->
+=======
+</script>
+
+>>>>>>> FETCH_HEAD
 </head>
 <body id="top">
 	<!--==============================header=================================-->
@@ -213,18 +218,13 @@ dataTable.setValue(index,3,"Flickr Count");
 			<div class="grid_12">
 				<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 					<ul class="sf-menu">
-					<c:choose>
-						<c:when test = "${not empty user}">
-						<li class = "current"><a href="viewGeography.do">Trend</a></li>
+					
 						<li><a href="home.do">Home</a></li>
-						<li><a href="logout.do">Logout</a></li>
-						</c:when>
-						<c:otherwise>
-						<li><a href="login.do">Login</a></li>
-						<li class="current"><a href="index.do">Index</a></li>
+						<li class = "current"><a href="viewGeography.do">Trend</a></li>
 						<li><a href="rank.do">Rank</a></li>
-						</c:otherwise>
-					</c:choose>
+						<li><a href="logout.do">Logout</a></li>
+						
+						
 					</ul>
 				</nav>
 				<div class="clear"></div>

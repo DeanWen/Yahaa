@@ -19,6 +19,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.scribe.model.Token;
 import org.xml.sax.SAXException;
 
@@ -137,21 +139,33 @@ public class HomeAction extends Action {
 	public void readData(String userId, HttpServletRequest request) throws URISyntaxException {
 		TagBean[] all = tagDAO.getAllbyUserId(userId);
 		
-		for (int i = 0; i < all.length - 1; i++) {
-			for (int j = i + 1; j < all.length; j++) {
-				if (all[i].getCount() < all[j].getCount()) {
-					TagBean temp = all[j];
-					all[i] = all[j];
+		for (int i = 0; i < all.length; i++) {
+			for (int j = 1; j < (all.length - i); j++) {
+				if (all[j - 1].getCount() > all[j].getCount()) {
+					// swap the elements!
+					TagBean temp = all[j - 1];
+					all[j - 1] = all[j];
 					all[j] = temp;
 				}
 			}
 		}
 		
+		JSONArray company = new JSONArray();
+		for (int i = 0; i < all.length; i++) {
+			JSONObject obj = new JSONObject();
+			 obj.put("count", all[i].getCount());
+			 obj.put("tag", all[i].getTag());
+			 company.add(obj);
+		}
+		System.out.print(company);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("JSON", company);
+		
 		try {
 			File file = new File("tag.csv");
 			String filePath = file.getCanonicalPath();
 			System.out.println(filePath);
-			HttpSession session = request.getSession();
 			session.setAttribute("filePath", filePath);
 			
 			FileWriter outputPathFileWriter = new FileWriter(file);

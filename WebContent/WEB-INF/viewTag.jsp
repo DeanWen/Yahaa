@@ -69,18 +69,12 @@
 			<div class="grid_12">
 				<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 					<ul class="sf-menu">
-					<c:choose>
-						<c:when test = "${not empty user}">
-						<li class = "current"><a href="viewGeography.do">Trend</a></li>
+					
 						<li><a href="home.do">Home</a></li>
-						<li><a href="logout.do">Logout</a></li>
-						</c:when>
-						<c:otherwise>
-						<li><a href="login.do">Login</a></li>
-						<li class="current"><a href="index.do">Index</a></li>
+						<li class = "current"><a href="viewGeography.do">Trend</a></li>
 						<li><a href="rank.do">Rank</a></li>
-						</c:otherwise>
-					</c:choose>
+						<li><a href="logout.do">Logout</a></li>
+						
 					</ul>
 				</nav>
 				<div class="clear"></div>
@@ -111,17 +105,19 @@ var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
             .range(["#009100", "#007500", "#00bb00", "#c4c440", "#00a600", "#006000", "#808040", "#4f4f4f", "#0e0e0", "#8c8c00", "#00a600", "#f9f9f9"]);
 
+var name = '<%= session.getAttribute("JSON") %>';
+var arr = JSON.parse(name);
 
-d3.csv("js/tag.csv", function(data) {
+d3.json(arr, function(arr) {
     // build the list of city names
-    data.forEach( function (d) {
-        cityData.push({"tag" : d.tag, "count" : d.count});
-    });
-
+    for (var i = 0; i < this.arr.length; i++) {
+    	cityData.push({"tag" : this.arr[i].tag, "count" : this.arr[i].count});
+    }
+	
     d3.layout.cloud()
             .size([width, height])
             .words(cityData.map(function(d){
-                return {text: d.tag, size: (5 + d.count / 200 * 40)};
+                return {text: d.tag, size: (5 + d.count / 5 * 40)};
             }))
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
             .font("serif")
@@ -187,22 +183,22 @@ function draw(words) {
 			</div>
 		</div>
 		<!--==============================footer=================================-->
-		<footer>
-			<div class="hor bg3"></div>
-			<div class="container_12">
-				<div class="grid_12">
-					<div class="socials">
-						<a href="#"></a> <a href="#"></a> <a href="#"></a>
-						<div class="clear"></div>
-					</div>
-					<div class="copy">
-						&copy; <span id="copyright-year"></span> | <a href="#">Privacy
-							Policy</a> <br> Website designed by <a
-							href="http://www.templatemonster.com/" rel="nofollow">TemplateMonster.com</a>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
-</body>
+            <footer>
+                <div class="hor bg3"></div>
+                <div class="container_12">
+                    <div class="grid_12">
+                        <div class="socials">
+                            <a href="#"></a>
+                            <a href="#"></a>
+                            <a href="#"></a>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="copy">
+                            &copy; <span id="copyright-year"></span> | <a href="#">Team 14 Infinity</a> <br>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </body>
 </html>

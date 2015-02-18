@@ -17,8 +17,6 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 import databeans.TweetBean;
-import databeans.UserBean;
-import DAO.UserDAO;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -190,11 +188,11 @@ public class Twitter {
 			throws UnsupportedEncodingException {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.twitter.com/1.1/statuses/update.json?status=");
-		query.append(text);
+		String encodeText = TwitterEncoder.encode(text);
+		query.append(encodeText);
 
 		OAuthRequest request = new OAuthRequest(Verb.POST, query.toString());
 		service.signRequest(accessToken, request);
-		
 		Response response = request.send();
 		
 	}
