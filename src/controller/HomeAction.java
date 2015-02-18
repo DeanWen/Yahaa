@@ -88,12 +88,12 @@ public class HomeAction extends Action {
 //			la[i] = locations[i][0];
 //			lo[i] = locations[i][1];
 //		}
-		System.out.println("locafsdfas:" + locations[0].latitude + locations[0].longitude);
+		System.out.println("sizeaaaaasddfsf:"+ locations.length);
 //		System.out.println("locationssdfsdfadsfasd:" + la[0] + " " + lo[0]);
 //		session.setAttribute("latitude", la[0]);
 //		session.setAttribute("longitude", lo[0]);
 		session.setAttribute("locations", locations);
-		session.setAttribute("location", locations[0]);
+		session.setAttribute("count", locations.length);
 		
 //		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 //		flickrToken = (Token) session.getAttribute("flickrAccessToken");

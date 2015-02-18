@@ -64,44 +64,25 @@
         ['Los Angeles', 600],
         ['Houston', 700]
       ]);
-      
-      /* dataTable = new google.visualization.DataTable();
-      dataTable.addRows(1);
-      dataTable.addColumn('number', 'LATITUDE', 'Latitude');
-      dataTable.addColumn('number', 'LONGITUDE', 'Longitude');
-      dataTable.addColumn('number', 'VALUE', 'Value'); // Won't use this column, but still must define it.
-      dataTable.addColumn('string', 'HOVER', 'HoverText'); */
-
-      
-      /* <c:set var="count" value="0"/>
-      <c:forEach var="location" items="${locatiosn}">
-      index = parseInt("${count}");
-      alert(index); */
-      /* latitude = parseFloat("${location.latitude}");
-      longitude = parseFloat("${location.longitude}"");
-      alert(latitude);
-      alert(longitude);
-      dataTable.setValue(0,0,40.0444);
-      dataTable.setValue(0,1,-103.0078);
-      dataTable.setValue(0,3,"Hello World!"); */
-	  /* </c:forEach> */
 	  var latitude;
       var longitude;
       var index = 0;
+      var row;
+      row = parseInt("${count}");
       
 	  dataTable = new google.visualization.DataTable();
-dataTable.addRows(1);
+dataTable.addRows(row);
 dataTable.addColumn('number', 'LATITUDE', 'Latitude');
 dataTable.addColumn('number', 'LONGITUDE', 'Longitude');
 dataTable.addColumn('number', 'VALUE', 'Value'); // Won't use this column, but still must define it.
 dataTable.addColumn('string', 'HOVER', 'HoverText');
 <c:forEach var="location" items="${locations}">
-
 latitude = parseFloat("${location.latitude}");
 longitude = parseFloat("${location.longitude}");
 dataTable.setValue(index,0,latitude);
 dataTable.setValue(index,1,longitude);
 dataTable.setValue(index,3,"Flickr Count");
+index = index + 1;
 </c:forEach>
       var options = {};
       options['region'] = 'US';
