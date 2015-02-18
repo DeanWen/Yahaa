@@ -210,5 +210,4 @@ public class Twitter {
 		long count = (long) object.get("favorite_count");	
 		return count;
 	}
-	
 }

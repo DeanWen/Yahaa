@@ -19,11 +19,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPathExpressionException;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.scribe.model.Token;
 import org.xml.sax.SAXException;
 
 import DAO.TagDAO;
 import databeans.FlickrBean;
+import databeans.LocationBean;
 import databeans.TagBean;
 import databeans.TweetBean;
 import databeans.UserBean;
@@ -52,7 +55,7 @@ public class HomeAction extends Action {
 		if (session.getAttribute("user") == null) {
 			return "index.jsp";
 		}
-
+		
 		UserBean user = (UserBean) session.getAttribute("user");
 		String tToken = user.getTwitterToken();
 		String tSecret = user.getTwitterSecret();
@@ -61,6 +64,36 @@ public class HomeAction extends Action {
 		twitterToken = new Token(tToken, tSecret);
 		flickrToken = new Token(fToken, fSecret);
 		
+		LocationBean[] locations = null;
+		try {
+			locations = flickr.fetchPhotosLocation(flickrToken);
+		} catch (XPathExpressionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParserConfigurationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+//		
+//		double[] la = new double[locations.length];
+//		double[] lo = new double[locations.length];
+//		
+//		for(int i = 0; i < locations.length; i++) {
+//			la[i] = locations[i][0];
+//			lo[i] = locations[i][1];
+//		}
+		System.out.println("sizeaaaaasddfsf:"+ locations.length);
+//		System.out.println("locationssdfsdfadsfasd:" + la[0] + " " + lo[0]);
+//		session.setAttribute("latitude", la[0]);
+//		session.setAttribute("longitude", lo[0]);
+		session.setAttribute("locations", locations);
+		session.setAttribute("count", locations.length);
 		
 //		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 //		flickrToken = (Token) session.getAttribute("flickrAccessToken");
@@ -106,21 +139,33 @@ public class HomeAction extends Action {
 	public void readData(String userId, HttpServletRequest request) throws URISyntaxException {
 		TagBean[] all = tagDAO.getAllbyUserId(userId);
 		
-		for (int i = 0; i < all.length - 1; i++) {
-			for (int j = i + 1; j < all.length; j++) {
-				if (all[i].getCount() < all[j].getCount()) {
-					TagBean temp = all[j];
-					all[i] = all[j];
+		for (int i = 0; i < all.length; i++) {
+			for (int j = 1; j < (all.length - i); j++) {
+				if (all[j - 1].getCount() > all[j].getCount()) {
+					// swap the elements!
+					TagBean temp = all[j - 1];
+					all[j - 1] = all[j];
 					all[j] = temp;
 				}
 			}
 		}
 		
+		JSONArray company = new JSONArray();
+		for (int i = 0; i < all.length; i++) {
+			JSONObject obj = new JSONObject();
+			 obj.put("count", all[i].getCount());
+			 obj.put("tag", all[i].getTag());
+			 company.add(obj);
+		}
+		System.out.print(company);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("JSON", company);
+		
 		try {
 			File file = new File("tag.csv");
 			String filePath = file.getCanonicalPath();
 			System.out.println(filePath);
-			HttpSession session = request.getSession();
 			session.setAttribute("filePath", filePath);
 			
 			FileWriter outputPathFileWriter = new FileWriter(file);

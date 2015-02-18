@@ -36,7 +36,6 @@ public class Controller extends HttpServlet {
 		Action.add(new LikeTimeChart(model));
 		Action.add(new RankAction(model));
 
-
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,7 +1,7 @@
 <jsp:include page="template-trendtop.jsp" />
 
 <div class="inner maxheight">
-	<h3>Video</h3>
+	<h3>Flickr Trend</h3>
 	<div id="visualization"></div>
 </div>
 </div>
@@ -9,7 +9,7 @@
 <div class="grid_4">
 	<div class="box">
 		<div class="inner maxheight">
-			<h4>Top Videos</h4>
+			<h4>Trends</h4>
 			<ul class="list">
 				<li class="li"><a href="viewGeography.do">Geography Trend</a></li>
 				<li class="li"><a href="likeTimeChart.do">Time Trend</a></li>

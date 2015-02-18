@@ -28,6 +28,8 @@ public class ViewGeography extends Action{
 		ArrayList<Double> position = flickr.getGeoData("16260920778", accessToken);
 		System.out.print(position.get(0) + " " + position.get(1));
 		
+		
+		
 		return "viewGeography.jsp";
 	}
 }
