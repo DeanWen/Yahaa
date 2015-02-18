@@ -62,14 +62,16 @@
 						<li><a href="viewGeography.do">Trend</a></li>
 						<li><a href="rank.do">Rank</a></li>
 						<li class="current"><a href="home.do">Home</a></li>
+						<li><a href="logout.do">Logout</a></li>
 						</c:when>
 						<c:otherwise>
 						<li><a href="login.do">Login</a></li>
-						<li class="current"><a href="index.do">Index</a></li>
+						<li ><a href="index.do">Index</a></li>
+						<li class="current"><a href="rank.do">Rank</a></li>
 						</c:otherwise>
 					</c:choose>
-						<li><a href="index.do">Index</a></li>
-						<li><a href="logout.do">Logout</a></li>
+						
+
 
 					</ul>
 				</nav>
