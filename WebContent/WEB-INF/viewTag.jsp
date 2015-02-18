@@ -111,17 +111,19 @@ var color = d3.scale.linear()
             .domain([0,1,2,3,4,5,6,10,15,20,100])
             .range(["#009100", "#007500", "#00bb00", "#c4c440", "#00a600", "#006000", "#808040", "#4f4f4f", "#0e0e0", "#8c8c00", "#00a600", "#f9f9f9"]);
 
+var name = '<%= session.getAttribute("JSON") %>';
+var arr = JSON.parse(name);
 
-d3.csv("js/tag.csv", function(data) {
+d3.json(arr, function(arr) {
     // build the list of city names
-    data.forEach( function (d) {
-        cityData.push({"tag" : d.tag, "count" : d.count});
-    });
-
+    for (var i = 0; i < this.arr.length; i++) {
+    	cityData.push({"tag" : this.arr[i].tag, "count" : this.arr[i].count});
+    }
+	
     d3.layout.cloud()
             .size([width, height])
             .words(cityData.map(function(d){
-                return {text: d.tag, size: (5 + d.count / 200 * 40)};
+                return {text: d.tag, size: (5 + d.count / 5 * 40)};
             }))
             .rotate(function() { return ~~(Math.random() * 2) * 90; })
             .font("serif")
