@@ -28,7 +28,7 @@ public class Controller extends HttpServlet {
 		Action.add(new SendTweetAction(model));
 		Action.add(new FetchContactsPhotos(model));
 		Action.add(new RegisterAction(model));
-		Action.add(new setPassword(model));
+		Action.add(new SetPassword(model));
 		Action.add(new LikeFlickrAction(model));
 		Action.add(new logoutAction(model));
 		Action.add(new ViewTag());
