@@ -17,14 +17,6 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
 		Model model = new Model(getServletConfig());
 		
-//		IOFile T = new IOFile(model);
-//		try {
-//			T.readData();
-//		} catch (URISyntaxException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		
 		Action.add(new IndexAction(model));
 		Action.add(new HomeAction(model));
 		Action.add(new Login(model));

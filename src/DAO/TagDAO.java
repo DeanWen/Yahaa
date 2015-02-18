@@ -59,9 +59,9 @@ public class TagDAO extends GenericDAO<TagBean> {
 		}
 	}
 	
-	public TagBean[] getAll() {
+	public TagBean[] getAllbyUserId(String userId) {
 		try {
-			TagBean[] array = match();
+			TagBean[] array = match(MatchArg.equals("userId", userId));
 			if (array == null || array.length == 0) {
 				return null;
 			} else {
