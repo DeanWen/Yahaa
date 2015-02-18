@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" import="java.util.*"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,20 +49,86 @@
 	})
 </script>
 
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+  <script type='text/javascript'>
+   google.load('visualization', '1', {'packages': ['geomap']});
+   google.setOnLoadCallback(drawMap);
 
-<script type='text/javascript' src='http://www.google.com/jsapi'></script>
-<script type='text/javascript'>
+    function drawMap() {
+      var data = google.visualization.arrayToDataTable([
+        ['City', 'Popularity'],
+        ['New York', 200],
+        ['Boston', 300],
+        ['Miami', 400],
+        ['Chicago', 500],
+        ['Los Angeles', 600],
+        ['Houston', 700]
+      ]);
+      
+      /* dataTable = new google.visualization.DataTable();
+      dataTable.addRows(1);
+      dataTable.addColumn('number', 'LATITUDE', 'Latitude');
+      dataTable.addColumn('number', 'LONGITUDE', 'Longitude');
+      dataTable.addColumn('number', 'VALUE', 'Value'); // Won't use this column, but still must define it.
+      dataTable.addColumn('string', 'HOVER', 'HoverText'); */
+
+      
+      /* <c:set var="count" value="0"/>
+      <c:forEach var="location" items="${locatiosn}">
+      index = parseInt("${count}");
+      alert(index); */
+      /* latitude = parseFloat("${location.latitude}");
+      longitude = parseFloat("${location.longitude}"");
+      alert(latitude);
+      alert(longitude);
+      dataTable.setValue(0,0,40.0444);
+      dataTable.setValue(0,1,-103.0078);
+      dataTable.setValue(0,3,"Hello World!"); */
+	  /* </c:forEach> */
+	  var latitude;
+      var longitude;
+      var index = 0;
+      
+	  dataTable = new google.visualization.DataTable();
+dataTable.addRows(1);
+dataTable.addColumn('number', 'LATITUDE', 'Latitude');
+dataTable.addColumn('number', 'LONGITUDE', 'Longitude');
+dataTable.addColumn('number', 'VALUE', 'Value'); // Won't use this column, but still must define it.
+dataTable.addColumn('string', 'HOVER', 'HoverText');
+<c:forEach var="location" items="${locations}">
+
+latitude = parseFloat("${location.latitude}");
+longitude = parseFloat("${location.longitude}");
+dataTable.setValue(index,0,latitude);
+dataTable.setValue(index,1,longitude);
+dataTable.setValue(index,3,"Flickr Count");
+</c:forEach>
+      var options = {};
+      options['region'] = 'US';
+      options['colors'] = [0xFF8747, 0xFFB581, 0xc06000]; //orange colors
+      options['dataMode'] = 'markers';
+
+      var container = document.getElementById('visualization');
+      var geomap = new google.visualization.GeoMap(container);
+      geomap.draw(dataTable, options);
+    };
+
+  </script>
+
+<!-- <script type='text/javascript'>
 	google.load('visualization', '1', {
 		'packages' : [ 'geochart' ]
 	});
 	google.setOnLoadCallback(drawVisualization);
 	
-	var stateData = [];
+	/* var stateData = [];
 	d3.csv("js/states.csv", function(data){
 		data.forEach(function(d){
 		stateData.push([d.state, d.count]);
 		});
-	});	
+	});	 */
+	
+	
 	
 	function drawVisualization() {
 		/* var data = google.visualization.arrayToDataTable([
@@ -84,23 +152,34 @@
 				[ 'Washington', 45 ], [ 'West Virginia', 6 ],
 				[ 'Wisconsin', 9 ], [ 'Wyoming', 0 ] ]); */
 	
-		var states = [['state', 'count']];
+				dataTable = new google.visualization.DataTable();
+				dataTable.addRows(1);
+				dataTable.addColumn('number', 'LATITUDE', 'Latitude');
+				dataTable.addColumn('number', 'LONGITUDE', 'Longitude');
+				//dataTable.addColumn('number', 'VALUE', 'Value'); // Won't use this column, but still must define it.
+				dataTable.addColumn('string', 'HOVER', 'HoverText');
+
+				dataTable.setValue(0,0,47.00);
+				dataTable.setValue(0,1,-122.00);
+				dataTable.setValue(0,3,"Hello World!");
+		/* var states = [['state', 'count']];
 		for(i = 1; i < stateData.length; i++) {
 			var cur = [stateData[i][0], parseInt(stateData[i][1])];
 			states.push(cur);
 		}
 		
-		var Final = google.visualization.arrayToDataTable(states);
+		
+		var Final = google.visualization.arrayToDataTable(states); */
 		var geochart = new google.visualization.GeoChart(document
 				.getElementById('visualization'));
-		geochart.draw(Final, {
+		geochart.draw(dataTable, {
 			width : 556,
 			height : 347,
 			region : "US",
 			resolution : "provinces"
 		});
 	}
-</script>
+</script> -->
 <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>
       <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">

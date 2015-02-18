@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 
 import DAO.TagDAO;
 import databeans.FlickrBean;
+import databeans.LocationBean;
 import databeans.TagBean;
 import databeans.TweetBean;
 import databeans.UserBean;
@@ -52,7 +53,7 @@ public class HomeAction extends Action {
 		if (session.getAttribute("user") == null) {
 			return "index.jsp";
 		}
-
+		
 		UserBean user = (UserBean) session.getAttribute("user");
 		String tToken = user.getTwitterToken();
 		String tSecret = user.getTwitterSecret();
@@ -61,6 +62,36 @@ public class HomeAction extends Action {
 		twitterToken = new Token(tToken, tSecret);
 		flickrToken = new Token(fToken, fSecret);
 		
+		LocationBean[] locations = null;
+		try {
+			locations = flickr.fetchPhotosLocation(flickrToken);
+		} catch (XPathExpressionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParserConfigurationException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SAXException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+//		
+//		double[] la = new double[locations.length];
+//		double[] lo = new double[locations.length];
+//		
+//		for(int i = 0; i < locations.length; i++) {
+//			la[i] = locations[i][0];
+//			lo[i] = locations[i][1];
+//		}
+		System.out.println("locafsdfas:" + locations[0].latitude + locations[0].longitude);
+//		System.out.println("locationssdfsdfadsfasd:" + la[0] + " " + lo[0]);
+//		session.setAttribute("latitude", la[0]);
+//		session.setAttribute("longitude", lo[0]);
+		session.setAttribute("locations", locations);
+		session.setAttribute("location", locations[0]);
 		
 //		twitterToken = (Token) session.getAttribute("twitterAccessToken");
 //		flickrToken = (Token) session.getAttribute("flickrAccessToken");

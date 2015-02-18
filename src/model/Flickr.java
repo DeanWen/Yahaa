@@ -40,6 +40,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import databeans.FlickrBean;
+import databeans.LocationBean;
 
 public class Flickr extends HttpServlet{
 	/**
@@ -51,6 +52,7 @@ public class Flickr extends HttpServlet{
 	
 	private static OAuthService service = null;
 	private static Flickr flickr = new Flickr();
+	private double[][] res;
 	
 	public Flickr() {
 		service = new ServiceBuilder()
@@ -276,6 +278,39 @@ public class Flickr extends HttpServlet{
 		return fetchContactPhotosMethod(8, accessToken);
 	}
 
+	public LocationBean[] fetchPhotosLocation(Token accessToken) throws XPathExpressionException, IOException, ParserConfigurationException, SAXException {
+		ArrayList<FlickrBean> photos = fetchContactPhotos(accessToken);
+		
+		ArrayList<double[]> temp = new ArrayList<double[]>();
+		for(int i = 0; i < photos.size(); i++) {
+			double[] location = new double[2];
+			ArrayList<Double> lo = new ArrayList<Double>();
+			try{
+				lo = getGeoData(photos.get(i).getId(), accessToken);
+			} catch (Exception e) {
+				System.out.println("nononononononononononono");
+			}
+			
+			if(lo == null || lo.size() == 0) {
+				continue;
+			}
+			location[0] = lo.get(0);
+			location[1] = lo.get(1);
+			
+			System.out.println(location[0] + " " + location[1]);
+			temp.add(location);
+		}
+		System.out.println(temp.size());
+		LocationBean[] res = new LocationBean[temp.size()];
+		for(int i = 0; i < temp.size(); i++) {
+			LocationBean cur = new LocationBean();
+			cur.latitude = temp.get(i)[0];
+			cur.longitude = temp.get(i)[1];
+			res[i] = cur;
+		}
+		
+		return res;
+	}
 	public void addFavourites(Token accessToken, String photo_id) {
 		StringBuilder query = new StringBuilder();
 		query.append("https://api.flickr.com/services/rest/?method=");

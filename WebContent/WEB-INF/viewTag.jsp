@@ -23,7 +23,7 @@
 	window.onload = function() {
 		try {
 			TagCanvas.Start('myCanvas', 'tags', {
-				textColour : '#367517',
+				textColour : '#616130',
 				outlineColour : '#f3f6f8',
 				reverse : true,
 				depth : 0.6,
@@ -95,7 +95,7 @@
 				<div class="grid_8">
 					<div class="box" style="padding-right:10%;text-align:left">
 						<div class="cloud" style="border:none">
-							<h3>Twitter Tag Cloud</h3>
+							<h3 style="padding-left:10%">Twitter Tag Cloud</h3>
 							
 							<script src="js/d3.v3.min.js"></script>
 <script src="js/d3.layout.cloud.js"></script>
