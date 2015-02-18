@@ -179,7 +179,6 @@ dataTable.setValue(index,3,"Flickr Count");
 			resolution : "provinces"
 		});
 	}
-<<<<<<< HEAD
 </script> -->
 <!--[if lt IE 8]>
     <div style=' clear: both; text-align:center; position: relative;'>
@@ -192,10 +191,8 @@ dataTable.setValue(index,3,"Flickr Count");
     <script src="js/html5shiv.js"></script>
     <link rel="stylesheet" media="screen" href="css/ie.css">
     <![endif]-->
-=======
-</script>
+<!-- </script> -->
 
->>>>>>> FETCH_HEAD
 </head>
 <body id="top">
 	<!--==============================header=================================-->
