@@ -36,7 +36,7 @@ public class Twitter {
     			.provider(TwitterApi.SSL.class)
 				.apiKey(twitterKey)
 				.apiSecret(twitterSecret)
-				.callback("http://localhost:8080/Yahaa/twitterCallback.do")
+				.callback("http://team14-yahaa.elasticbeanstalk.com/twitterCallback.do")
 				.build();
     }  
 	

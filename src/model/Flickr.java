@@ -59,7 +59,7 @@ public class Flickr extends HttpServlet{
         .provider(FlickrApi.class)
         .apiKey(API_KEY)
         .apiSecret(API_SECRET)
-        .callback("http://localhost:8080/Yahaa/flickrCallback.do")
+        .callback("http://team14-yahaa.elasticbeanstalk.com/flickrCallback.do")
         .build();
 		
 	}
